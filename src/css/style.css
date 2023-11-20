@@ -1,0 +1,151 @@
+:root {
+  --main-color: #ff69b4;
+  --sub-color: rgb(252, 249, 235);
+}
+
+.fixation,
+.input-group {
+  width: 680px;
+  height: 500px;
+}
+
+body {
+  background-color: var(--sub-color);
+}
+
+header,
+form,
+.title,
+.input-group,
+.btn,
+.btn:after {
+  position: absolute;
+}
+
+.title {
+  color: var(--main-color);
+  width: 400px;
+  top: 50px;
+  left: 650px;
+  font-size: 150%;
+  font-family: 'DM Serif Display', serif;
+}
+
+form {
+  margin: 100px 400px 0px 600px;
+}
+
+#document {
+  margin: 0 auto;
+}
+
+.input-group {
+  margin: 250px 350px 100px 500px;
+  border: 4px solid var(--main-color);
+  height: fit-content;
+}
+
+input::placeholder {
+  font-size: 1.4em;
+  color: #a5a5a5;
+}
+
+.btn,
+.search-input {
+  border: 4px solid var(--main-color);
+}
+
+.search-input {
+  background-color: var(--sub-color);
+  margin: 50px auto;
+  padding: 0px 20px 0px 20px;
+  width: 350px;
+  height: 48px;
+  position: static;
+}
+
+/*-------------------- search_button -----------------------*/
+.btn {
+  align-items: center;
+  margin: 50px 0px 0px 15px;
+  background-color: #fee6e3;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  height: 48px;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn:after {
+  background-color: #111;
+  border-radius: 8px;
+  content: "";
+  display: block;
+  height: 48px;
+  left: 0;
+  width: 100%;
+  top: -2px;
+  transform: translate(5px, 5px);
+  transition: transform .2s ease-out;
+  z-index: -1;
+}
+
+.btn:hover:after {
+  transform: translate(0, 0);
+}
+
+.btn:active {
+  background-color: #ffdeda;
+  outline: 0;
+}
+
+.btn:hover {
+  outline: 0;
+}
+
+
+/* ----------------result-------------------- */
+
+img {
+  justify-content: center;
+}
+
+.result_books {
+  display: grid;
+  float: left;
+}
+
+.books {
+  list-style: none;
+}
+
+.book_poster {
+  width: 120px;
+  height: 180px;
+  transition: all 0.2s linear;
+}
+
+.book_poster:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  outline-color: transparent;
+  outline-style:solid;
+  box-shadow: 0 0 0 4px #5a01a7;
+}
+
+.book {
+  
+}
