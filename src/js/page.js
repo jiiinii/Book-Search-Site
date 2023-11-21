@@ -1,5 +1,3 @@
-// import {search} from '.search';
-
 $.ajax({
     method: "GET",
     url: "https://dapi.kakao.com/v3/search/book",
@@ -46,17 +44,6 @@ window.searchPost = () => {
         return;
     }
 }
-
-// const afterResult = () => {
-//     // main 영역 마크업
-//     document.getElementById('contents').innerHTML = search;
-    
-//     const 
-
-// }
-// export default afterResult;
-
-
 
 // none thumbnail 대체 이미지 구현
 const msg = document.createElement('li');

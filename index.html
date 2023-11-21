@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- css -->
     <link href="/src/css/style.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Hi+Melody&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Hi+Melody&display=swap"
+        rel="stylesheet" />
 
     <!-- javascript -->
     <script src="/src/js/page.js" type="text/javascript" defer></script>
@@ -27,17 +28,19 @@
 
 
         <!-------------------------- search ------------------------------->
-        <main id="document">
-            <form action method="search_line">
-                <input class="search-input" type="input" placeholder="책 제목 및 저자 검색" onkeyup="enterkeySearch()" minlength="3"
-                    maxlength="250" required />
-                <button type="button" type="submit" class="btn btn-outline-primary"
-                    onclick="searchPost()">search</button>
-            </form>
+        <form action method="search_line">
+            <input class="search-input" type="input" placeholder="책 제목 및 저자 검색" onkeyup="enterkeySearch()" minlength="3"
+                maxlength="250" required />
+            <button type="button" type="submit" class="btn btn-outline-primary" onclick="searchPost()">search</button>
+        </form>
 
-            <div class="input-group">
-            </div>
-        </main>
+        <div class="input-group">
+        </div>
+
+        <div class="beforeResult">
+            <img src="src/img/duck.gif" />
+            <p>Find your's book.</p>
+        </div>
     </div>
 </body>
 
