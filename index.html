@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- css -->
+    <link href="/src/css/reset.css" rel="stylesheet" type="text/css" />
     <link href="/src/css/style.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Hi+Melody&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Hi+Melody&family=Lobster&display=swap"
+        rel="stylesheet">
 
     <!-- javascript -->
     <script src="/src/js/page.js" type="text/javascript" defer></script>
@@ -18,28 +19,33 @@
 </head>
 
 <body>
-    <!------------------------ title --------------------------->
     <div id="fixation">
+        <!---------------- title ------------------>
         <header role="navigation">
             <h1 class="logo">
-                <a class="title">📖Book Search📖</a>
+                <a href="\">📖Book Search📖</a>
             </h1>
         </header>
 
 
-        <!-------------------------- search ------------------------------->
-        <form action method="search_line">
-            <input class="search-input" type="input" placeholder="책 제목 및 저자 검색" onkeyup="enterkeySearch()" minlength="3"
-                maxlength="250" required />
-            <button type="button" type="submit" class="btn btn-outline-primary" onclick="searchPost()">search</button>
-        </form>
+        <!------------------ search -------------------->
+        <main id="library">
+            <form action="" method="search_line">
+                <input class="search-entry" type="input" placeholder="책 제목 및 저자 검색" onkeyup="enterkeySearch()"
+                    minlength="3" maxlength="250" required />
+                <div class="filterFuction">
+                    <button type="button" type="submit" class="btn btn-outline-primary"
+                        onclick="searchPost()">search</button>
+                </div>
+            </form>
 
-        <div class="input-group">
-            <!-- <div class="beforeResult">
+            <div class="input-group">
+                <!-- <div class="beforeResult">
                 <img class="waiting" src="src/img/duck.gif" />
                 <p class="findBefore">Find your's book.....💕</p>
             </div> -->
-        </div>
+            </div>
+        </main>
     </div>
 </body>
 
