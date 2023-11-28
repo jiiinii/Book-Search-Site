@@ -46,14 +46,14 @@ window.searchPost = () => {
 }
 
 // none thumbnail 대체 이미지 구현
-const msg = document.createElement('li');
-msg.documents.className = 'book';
+// const msg = document.createElement('li');
+// msg.documents.className = 'book';
 
-msg.documents.innerHTML = `
-${
-    msg.documents[i].thumbnail === 'N/A'
-        ? `<div class="search_thumbnail_none"></div>`
-        : `<img class = "book_poster" src="${msg.documents[i].thumbnail}" alt="${msg.documents[i].title}의 썸네일"/>`
-}
-<a href = "></a>
-`;
+// msg.documents.innerHTML = `
+// ${
+//     msg.documents[i].thumbnail === 'N/A'
+//         ? `<div class="search_thumbnail_none"></div>`
+//         : `<img class = "book_poster" src="${msg.documents[i].thumbnail}" alt="${msg.documents[i].title}의 썸네일"/>`
+// }
+// <a href = "></a>
+// `;
