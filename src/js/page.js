@@ -2,7 +2,7 @@ $.ajax({
     method: "GET",
     url: "https://dapi.kakao.com/v3/search/book",
     data: {
-        query: "소크라테스",
+        query: "kids",
         page: 50,
         size: 10,
         target: "",
@@ -15,11 +15,10 @@ $.ajax({
     .done(function (msg) {
         const inputGroup = document.querySelector(".input-group");
         for (var i = 0; i < 10; i++) {
-            const tmp = `<ul class = "result_books">
+            const tmp = `
         <li class = "books">
         <img class = "book_poster" src="${msg.documents[i].thumbnail}"/><br/>
         </li>
-        </ul>
         `
             inputGroup.innerHTML += tmp;
         } // 2
