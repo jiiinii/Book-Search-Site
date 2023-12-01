@@ -1,4 +1,6 @@
-import { search } from './search'
+import { search } from './search';
+import { searchData } from './searchData';
+import { handlePushstate } from '../handlePushstate';
 
 const aboutSearch = () => {
     // main 영역 마크업
@@ -10,6 +12,7 @@ const aboutSearch = () => {
     const searchInput = document.querySelector('.search-input');
     const searchButton = document.querySelector('.button');
     const beforeResultEl = ducoment.querySelector('.beforeResult');
+    const logoEl = querySelector('.logo');
     let callOut = 0;
 
 
@@ -22,10 +25,23 @@ const aboutSearch = () => {
         beforeResultEl.classList.add('hide');
         loadingEl && loadingEl.classList.add('show');
 
-        
-
-
+        // 검색 api 호출
+        callOut = searchButton.value;
+        searchData(searchInput.value, callOut);
     };
-}
+
+    searchFormEl.addEventListener('submit', contentsSubmit);
+
+    // 
+    let timer = null;
+    const debouncing = () => {
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(isFinite, 500);
+    }
+
+    document.addEventListener('DOMContentLoaded', debouncing);
+
+    handlePushstate(logoEl, '/');
+};
 export default aboutSearch;
 
