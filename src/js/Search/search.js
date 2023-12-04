@@ -1,7 +1,10 @@
 export const search = `
-<form action method="search_line">
-    <input class="search-input" type="input" placeholder="책 제목 및 저자 검색" onkeyup="enterkeySearch()" minlength="3" maxlength="250" required />
-    <button type="button" type="submit" class="btn btn-outline-primary" onclick="searchPost()">search</button>
+<form action="" method="search_line">
+<input class="search-entry" type="input" placeholder="Search for book titles & authors"
+    onkeyup="enterkeySearch()" minlength="3" maxlength="250" required />
+<div class="filterFuction">
+    <button type="button" class="btn" onclick="searchPost()">Search</button>
+</div>
 </form>
 
 <!------------------------- result ------------------------->

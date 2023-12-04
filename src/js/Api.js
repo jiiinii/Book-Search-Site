@@ -10,19 +10,20 @@ window.enterkeySearch = () => {
 window.searchPost = () => {
     console.log(`searchPost`);
     $('#input-group').empty();
-    let searchQuery = $('#search-input').val();
+    let searchQuery = $('#search-entry').val();
     console.log(`searchQuery :  ` + searchQuery);
+
+    // 검색어가 비어있으면 결과를 초기화
     if (searchQuery == '') {
         $('#search-input').focus();
         return;
     }
 
-    console.log(`searchPost ajax`);
     $.ajax({
         method: "GET",
         url: "https://dapi.kakao.com/v3/search/book",
         data: {
-            query: "animal",
+            query: "all",
             page: 50,
             size: 10,
             target: "",
@@ -37,10 +38,10 @@ window.searchPost = () => {
             const inputGroup = document.querySelector(".input-group");
             for (var i = 0; i < 10; i++) {
                 const tmp = `
-                <li class = "books">
-                <img class = "book_poster" src="${msg.documents[i].thumbnail}"/><br/>
-                </li>
-                `
+            <li class = "books">
+            <img class = "book_poster" src="${msg.documents[i].thumbnail}"/><br/>
+            </li>
+            `
                 inputGroup.innerHTML += tmp;
             } // 2
         });
