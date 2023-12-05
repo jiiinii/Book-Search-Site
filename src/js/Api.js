@@ -10,7 +10,7 @@ window.enterkeySearch = () => {
 window.searchPost = () => {
     console.log(`searchPost`);
     $('#input-group').empty();
-    let searchQuery = $('#search-entry').val();
+    let searchQuery = $('.search-entry').val();
     console.log(`searchQuery :  ` + searchQuery);
 
     // 검색어가 비어있으면 결과를 초기화
@@ -21,9 +21,9 @@ window.searchPost = () => {
 
     $.ajax({
         method: "GET",
-        url: "https://dapi.kakao.com/v3/search/book",
+        url: `https://dapi.kakao.com/v3/search/book`,
         data: {
-            query: "all",
+            query: searchQuery,
             page: 50,
             size: 10,
             target: "",
