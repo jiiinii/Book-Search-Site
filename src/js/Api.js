@@ -34,15 +34,22 @@ window.searchPost = () => {
 
     })
         .done(function (msg) {
-            console.log(msg);
             const inputGroup = document.querySelector(".input-group");
+            // let result = inputGroup.map((msg) => {
+            //     console.log('msg : ' + msg);
+            //     return msg;
+            // });
+            // result;
             for (var i = 0; i < 10; i++) {
-                const tmp = `
-            <li class = "books">
-            <img class = "book_poster" src="${msg.documents[i].thumbnail}"/><br/>
-            </li>
-            `
+                const tmp = `${ msg.documents[i].thumbnail === ""
+                ? `<li class = "books"><img class = "book-poster-none"></img></li>`
+                : `<li class = "books"><img class = "book_poster" src="${msg.documents[i].thumbnail}"/></li>`}`
                 inputGroup.innerHTML += tmp;
             } // 2
+
+            if (searchQuery != '') {
+                $('.books').remove();
+            }
+
         });
 }
