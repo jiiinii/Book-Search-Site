@@ -145,6 +145,7 @@ img {
   width: 120px;
   height: 180px;
   background: #d2d2d2;
+  background-image: url('');
   float: left;
   background-size: 30px;
   transition: all 0.2s linear;
@@ -173,7 +174,7 @@ img {
 }
 
 .beforeResult {
-  padding: 100px 250px 95px 250px;
+  padding: 50px 210px 50px 200px;
 }
 
 .waiting {

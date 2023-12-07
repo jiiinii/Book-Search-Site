@@ -1,7 +1,6 @@
 //검색창에 엔터 치면 결과가 나오도록 함
 // searchPost()실행
 window.enterkeySearch = () => {
-    console.log(`enterkeySearch`);
     if (window.event.keyCode == 13) {
         searchPost();
     }
@@ -12,12 +11,6 @@ window.searchPost = () => {
     $('#input-group').empty();
     let searchQuery = $('.search-entry').val();
     console.log(`searchQuery :  ` + searchQuery);
-
-    // 검색어가 비어있으면 결과를 초기화
-    if (searchQuery == '') {
-        $('#search-input').focus();
-        return;
-    }
 
     $.ajax({
         method: "GET",
@@ -35,21 +28,20 @@ window.searchPost = () => {
     })
         .done(function (msg) {
             const inputGroup = document.querySelector(".input-group");
-            // let result = inputGroup.map((msg) => {
-            //     console.log('msg : ' + msg);
-            //     return msg;
-            // });
-            // result;
+            let tmp;
             for (var i = 0; i < 10; i++) {
-                const tmp = `${ msg.documents[i].thumbnail === ""
-                ? `<li class = "books"><img class = "book-poster-none"></img></li>`
-                : `<li class = "books"><img class = "book_poster" src="${msg.documents[i].thumbnail}"/></li>`}`
+                tmp = `${msg.documents[i].thumbnail === ""
+                    ? `<li class = "books"><img class = "book-poster-none"></img></li>`
+                    : `<li class = "books"><img class = "book_poster" src="${msg.documents[i].thumbnail}"/></li>`
+                }`
+                displayResults(inputGroup, tmp);
                 inputGroup.innerHTML += tmp;
             } // 2
 
-            if (searchQuery != '') {
-                $('.books').remove();
+            function displayResults(inputGroup, tmp) {
+                // 결과를 표시하기 전에 이전 결과 지우기
+                inputGroup.innerHTML = "";
+                tmp.innerHTML = "";
             }
-
         });
 }
