@@ -144,8 +144,9 @@ img {
 .book-poster-none {
   width: 120px;
   height: 180px;
-  background: #d2d2d2;
-  background-image: url('');
+  background: #e3e3e3 
+  url('/static/assets/book-bookmark-minimalistic-svgrepo-com.png') 
+  no-repeat 50% 50%; 
   float: left;
   background-size: 30px;
   transition: all 0.2s linear;
@@ -188,6 +189,13 @@ img {
   font-weight: 700;
   color: #a5a5a5;
   font-family: 'Hi Melody', sans-serif;
+}
+
+.booksList {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 120px 120px 120px 120px;
+  gap: 30px;
 }
 
 /* -------------------- Footer ------------------------- */
