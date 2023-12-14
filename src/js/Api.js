@@ -1,9 +1,13 @@
+const pageNation = document.querySelector('.pagenation');
+pageNation.innerHTML = "";
+
 //검색창에 엔터 치면 결과가 나오도록 함
 // searchPost()실행
 window.enterkeySearch = () => {
     if (window.event.keyCode == 13) {
         searchPost();
     }
+    pageNation.classList.add('show');
 };
 
 window.searchPost = () => {
