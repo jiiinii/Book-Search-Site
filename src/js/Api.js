@@ -33,14 +33,13 @@ window.searchPost = () => {
 
     })
         .done((msg) => {
-            console.log(msg);
-
-            msg.documents.map(result => {
-                let tmp = `${result.thumbnail === ""
-                ? `<li class = "books"><img class = "book-poster-none"></img></li>`
-                : `<li class = "books"><img class = "book_poster" src="${result.thumbnail}"/></li>`
-                }`;
-                booksEl.innerHTML += tmp;
+            msg.documents.forEach(element => {
+                console.log(element.thumbnail);
+                let result = `${element.thumbnail === ""
+                    ? `<li class = "books"><img class = "book-poster-none"></img></li>`
+                    : `<li class = "books"><img class = "book_poster" src="${element.thumbnail}"/></li>`
+                    }`;
+                booksEl.innerHTML += result;
             });
         });
     inputGroup.append(booksEl);
