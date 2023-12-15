@@ -1,27 +1,23 @@
-const pageNation = document.querySelector('.pagenation');
-pageNation.innerHTML = "";
-
 //검색창에 엔터 치면 결과가 나오도록 함
 // searchPost()실행
 window.enterkeySearch = () => {
     if (window.event.keyCode == 13) {
         searchPost();
     }
-    pageNation.classList.add('show');
 };
 
 window.searchPost = () => {
-    console.log(`searchPost`);
-    $('#input-group').empty();
-    let searchQuery = $('.search-entry').val();
-    console.log(`searchQuery :  ` + searchQuery);
-
     const inputGroup = document.querySelector(".input-group");
-    inputGroup.innerHTML = "";
-
     const booksEl = document.createElement('ul');
+
+    inputGroup.innerHTML = "";
     booksEl.className = 'booksList';
 
+    $('#input-group').empty();
+
+    let searchQuery = $('.search-entry').val();
+
+    function pagenation(){
     $.ajax({
         method: "GET",
         url: `https://dapi.kakao.com/v3/search/book`,
@@ -46,5 +42,6 @@ window.searchPost = () => {
                 booksEl.innerHTML += result;
             });
         });
+    }
     inputGroup.append(booksEl);
 }
