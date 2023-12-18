@@ -21,13 +21,13 @@
 
 <body>
     <div id="fixation">
-        <!------- title --------->
+        <!---------------- title ------------------>
         <header role="navigation">
             <h1 class="logo">
                 <a href="\">📖Book Search📖</a>
             </h1>
         </header>
-        <!------- search --------->
+        <!------------------ search -------------------->
         <main id="library">
             <form action="" method="search_line" onsubmit="return false">
                 <input class="search-entry" type="input" placeholder="Search for book titles & authors"
@@ -37,7 +37,7 @@
                 </div>
             </form>
 
-            <!-------- result ---------->
+            <!-------------------- result ----------------------->
             <div class="input-group">
                 <div class="beforeResult">
                     <img class="waiting" src="src/img/duck.gif" />
@@ -45,13 +45,16 @@
                 </div>
             </div>
 
-            <!------- pageing --------->
-        <div class="pagenationGroup">    
-            <div class="page_box">
+            <!------------------------- page ------------------------->
+            <div class="pagenation">
+                <button class="prev">Prev</button>
+                <div class="number-button-wrapper">
+                    <p class="page-number">1</p>
+                </div>
+                <button class="next">Next</button>
             </div>
-        </div>
             
-            <!-------- footer -------->
+            <!------------------------- footer ------------------------->
             <footer>Made by. Jin Hui Park<br /><br />
                 Github : <a
                     href="https://github.com/jiiinii/open_api">https://github.com/jiiinii/open_api</a><br /><br />
