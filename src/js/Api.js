@@ -1,25 +1,20 @@
-const pageNation = document.querySelector('.pagenation');
-pageNation.innerHTML = "";
-
 //검색창에 엔터 치면 결과가 나오도록 함
 // searchPost()실행
 window.enterkeySearch = () => {
     if (window.event.keyCode == 13) {
         searchPost();
     }
-    pageNation.classList.add('show');
 };
 
 window.searchPost = () => {
-    console.log(`searchPost`);
     $('#input-group').empty();
+
     let searchQuery = $('.search-entry').val();
-    console.log(`searchQuery :  ` + searchQuery);
 
     const inputGroup = document.querySelector(".input-group");
-    inputGroup.innerHTML = "";
-
     const booksEl = document.createElement('ul');
+
+    inputGroup.innerHTML = "";
     booksEl.className = 'booksList';
 
     $.ajax({
@@ -34,17 +29,49 @@ window.searchPost = () => {
         },
         headers: { Authorization: "KakaoAK 0c604b6d9932c79e6b756db42c60334b" },
         // 쿼리 파라미터 갯수 요청하기
-
     })
         .done((msg) => {
+            console.log(msg);
             msg.documents.forEach(element => {
-                console.log(element.thumbnail);
+                
+                // 책 제목
+                let bookTitleEl = '';
+                if (element.title) {
+                    bookTitleEl =
+                        element.title.length > 25
+                            ? element.title.slice(0, 25) + '...'
+                            : element.title;
+                }
+
+                // 책 가격
+                let bookPriceEl = '';
+                if (element.price) {
+                    bookPriceEl = element.price;
+                }
+
                 let result = `${element.thumbnail === ""
-                    ? `<li class = "books"><img class = "book-poster-none"></img></li>`
-                    : `<li class = "books"><img class = "book_poster" src="${element.thumbnail}"/></li>`
-                    }`;
+                    ? `<li class = "books"><img class = "book-poster-none" /><a class = 'info' bookId = "${element.isbn}">
+                    <p>${bookTitleEl}</p>
+                    <p>${bookPriceEl}</p>
+                    </a></li>`
+                    : `<li class = "books"><img class = "book_poster" src="${element.thumbnail}" alt="${element.title}의 책 표지"/><a class = 'info' bookId = "${element.isbn}">
+                    <p>${bookTitleEl}</p>
+                    <p>${bookPriceEl}</p>
+                    </a></li>`
+                    }
+                    `;
                 booksEl.innerHTML += result;
+
             });
+
+            // 검색 결과가 없을 때
+            if (msg.documents.length == 0) {
+                const noResults = document.createElement('p');
+                noResults.className = 'no_result';
+                noResults.innerText = 'The book could not be found T.T \n\n Try searching another keyword.';
+
+                inputGroup.append(noResults);
+            }
         });
     inputGroup.append(booksEl);
 }
