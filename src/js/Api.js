@@ -31,41 +31,41 @@ window.searchPost = () => {
         // 쿼리 파라미터 갯수 요청하기
     })
         .done((msg) => {
-            console.log(msg);
-            msg.documents.forEach(element => {
-                
-                // 책 제목
-                let bookTitleEl = '';
-                if (element.title) {
-                    bookTitleEl =
-                        element.title.length > 25
-                            ? element.title.slice(0, 25) + '...'
-                            : element.title;
-                }
 
-                // 책 가격
-                let bookPriceEl = '';
-                if (element.price) {
-                    bookPriceEl = element.price;
-                }
+            if (msg.documents.length !== 0) {
+                msg.documents.forEach(element => {
 
-                let result = `${element.thumbnail === ""
-                    ? `<li class = "books"><img class = "book-poster-none" /><a class = 'info' bookId = "${element.isbn}">
-                    <p>${bookTitleEl}</p>
-                    <p>${bookPriceEl}</p>
-                    </a></li>`
-                    : `<li class = "books"><img class = "book_poster" src="${element.thumbnail}" alt="${element.title}의 책 표지"/><a class = 'info' bookId = "${element.isbn}">
-                    <p>${bookTitleEl}</p>
-                    <p>${bookPriceEl}</p>
-                    </a></li>`
+                    const booksLiEl = document.createElement('li');
+                    booksLiEl.className = 'books'
+
+                    // 책 제목
+                    let bookTitleEl = '';
+                    if (element.title) {
+                        bookTitleEl =
+                            element.title.length > 25
+                                ? element.title.slice(0, 25) + '...'
+                                : element.title;
                     }
+
+                    // 책 가격
+                    let bookPriceEl = '';
+                    if (element.price) {
+                        bookPriceEl = element.price;
+                    }
+
+                    booksLiEl.innerHTML = `${element.thumbnail === ""
+                        ? `<img class = "book-poster-none">`
+                        : `<img class = "book_poster" src="${element.thumbnail}" alt="${element.title}의 책 표지"/>`
+                    }
+                    <a class = 'info' bookId = "${element.isbn}">
+                    <p>${bookTitleEl}</p>
+                    <p>${bookPriceEl}</p>
+                    </a>
                     `;
-                booksEl.innerHTML += result;
-
-            });
-
-            // 검색 결과가 없을 때
-            if (msg.documents.length == 0) {
+                    booksEl.append(booksLiEl);
+                    inputGroup.append(booksEl);
+                });
+            } else {
                 const noResults = document.createElement('p');
                 noResults.className = 'no_result';
                 noResults.innerText = 'The book could not be found T.T \n\n Try searching another keyword.';
@@ -73,5 +73,4 @@ window.searchPost = () => {
                 inputGroup.append(noResults);
             }
         });
-    inputGroup.append(booksEl);
 }

@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Hi+Melody&family=Lobster&family=Playpen+Sans:wght@500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap');
 
 :root {
   --main-color: #ff69b4;
@@ -173,7 +174,8 @@ img {
 
 .info {
   font-weight: 700;
-  font-size: 12px;
+  font-size: 16px;
+  font-family: 'Gamja Flower', sans-serif;
 
   p:first-child {
     margin-top: 110px;
