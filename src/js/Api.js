@@ -7,8 +7,6 @@ window.enterkeySearch = () => {
 };
 
 window.searchPost = () => {
-    $('#input-group').empty();
-
     let searchQuery = $('.search-entry').val();
 
     const inputGroup = document.querySelector(".input-group");
@@ -17,21 +15,28 @@ window.searchPost = () => {
     inputGroup.innerHTML = "";
     booksEl.className = 'booksList';
 
+    let pageNationHTML = ""
+    var pageSize = 1;
+    var countPerPage = 8; // 한 페이지당 50개씩 보여줄 것.
+
     $.ajax({
         method: "GET",
         url: `https://dapi.kakao.com/v3/search/book`,
         data: {
             query: searchQuery,
-            page: 1, // 결과 페이지 번호, 1~50 사이의 값, 기본 값 1
-            size: 50, // 한 페이지에 보여질 문서 수, 1~50 사이의 값, 기본 값 10
+            page: pageSize, // 결과 페이지 번호, 1~50 사이의 값, 기본 값 1
+            size: countPerPage, // 한 페이지에 보여질 문서 수, 1~50 사이의 값, 기본 값 10
             target: "",
             status: ""
         },
         headers: { Authorization: "KakaoAK 0c604b6d9932c79e6b756db42c60334b" },
         // 쿼리 파라미터 갯수 요청하기
+        success: function () {
+            // return Math.ceil(data.length / sizeVal); // data.length = 총 파싱해 온 데이터 수량
+        }
     })
         .done((msg) => {
-
+            console.log(msg);
             if (msg.documents.length !== 0) {
                 msg.documents.forEach(element => {
 
@@ -56,7 +61,7 @@ window.searchPost = () => {
                     booksLiEl.innerHTML = `${element.thumbnail === ""
                         ? `<img class = "book-poster-none">`
                         : `<img class = "book_poster" src="${element.thumbnail}" alt="${element.title}의 책 표지"/>`
-                    }
+                        }
                     <a class = 'info' bookId = "${element.isbn}">
                     <p>${bookTitleEl}</p>
                     <p>${bookPriceEl}</p>
