@@ -183,7 +183,7 @@ img {
     font-weight: 700;
     font-size: 16px;
     font-family: 'Gamja Flower', sans-serif;
-  
+
     p:first-child {
       margin-top: 110px;
       height: 40px;
@@ -215,6 +215,26 @@ img {
   font-family: 'Hi Melody', sans-serif;
 }
 
+/* ----------- loading ------------- */
+
+.onStandby {
+  display: none;
+  padding: 50px 180px 50px 180px;
+}
+
+.loading {
+  width: 200px;
+  height: 200px;
+}
+
+.moment {
+  width: 250px;
+  font-size: 25px;
+  font-weight: 700;
+  color: #a5a5a5;
+  font-family: 'Hi Melody', sans-serif;
+}
+
 .no_result {
   font-family: 'Playpen Sans', cursive;
   font-size: 16px;
@@ -227,9 +247,11 @@ img {
 .pagingBlock {
   text-align: center;
   margin-top: 30px;
+  display: none;
 }
 
 .pagination {
+  cursor: pointer;
   display: inline-block;
 }
 
@@ -244,9 +266,9 @@ img {
 }
 
 .pagination a.active {
-  background-color: #ff69b4;
+  background-color: var(--main-color);
   color: white;
-  border: 1px solid #ff69b4;
+  border: 1px solid var(--main-color);
 }
 
 .pagination a:hover:not(.active) {background-color: #ddd;}

@@ -10,14 +10,19 @@ window.searchPost = () => {
     let searchQuery = $('.search-entry').val();
 
     const inputGroup = document.querySelector(".input-group");
+    const beforeResult = document.querySelector(".beforeResult");
+    const loadingScreen = document.querySelector(".onStandby");
+    const pageButton = document.querySelector(".pagingBlock");
     const booksEl = document.createElement('ul');
 
-    inputGroup.innerHTML = "";
+    beforeResult.style.display = 'none'; // 검색 실행 시 첫 화면 사라짐
+    loadingScreen && loadingScreen.classList.add('show');
     booksEl.className = 'booksList';
+    pageButton.style.display = 'block'; // 페이지 버튼 출력
 
     let pageNationHTML = ""
     var pageSize = 1;
-    var countPerPage = 8; // 한 페이지당 50개씩 보여줄 것.
+    var countPerPage = 8; // 한 페이지당 n개씩 보여줄 것.
 
     $.ajax({
         method: "GET",
@@ -37,6 +42,7 @@ window.searchPost = () => {
     })
         .done((msg) => {
             console.log(msg);
+            console.log(msg.meta.total_count);
             if (msg.documents.length !== 0) {
                 msg.documents.forEach(element => {
 
@@ -78,4 +84,9 @@ window.searchPost = () => {
                 inputGroup.append(noResults);
             }
         });
+
+        function handleClick(event){
+            
+
+        }
 }
