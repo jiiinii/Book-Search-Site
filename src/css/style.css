@@ -250,12 +250,12 @@ img {
   display: none;
 }
 
-.pagination {
+#numbers {
   cursor: pointer;
   display: inline-block;
 }
 
-.pagination .page_box {
+#numbers .page_box {
   color: black;
   float: left;
   padding: 8px 16px;
@@ -265,7 +265,7 @@ img {
   margin: 0 4px;
 }
 
-.pagination a:hover {
+#numbers .page_box:hover {
   background-color: #ddd;
 }
 
