@@ -10,6 +10,10 @@ window.searchPost = () => {
   let searchQuery = $(".search-entry").val();
 
   const inputGroup = document.querySelector(".input-group");
+  if (searchQuery == '') {
+    inputGroup.style.display = "block";
+  }
+
   //  const beforeResult = document.querySelector(".beforeResult");
   //   const loadingScreen = document.querySelector(".onStandby");
   const pageButton = document.querySelector(".pagingBlock");
@@ -22,7 +26,7 @@ window.searchPost = () => {
   pageButton.style.display = "block"; // 페이지 버튼 출력
 
   let pageNationHTML = "";
-  var currentPage = 1;
+  var currentPage = 1; // 현재 보고있는 페이지 번호
   var rowsPerPage = 8; // 한 페이지당 n개씩 보여줄 것.
 
   $.ajax({
@@ -41,6 +45,7 @@ window.searchPost = () => {
       // return Math.ceil(data.length / sizeVal); // data.length = 총 파싱해 온 데이터 수량
     },
   }).done((msg) => {
+    console.log(msg);
     if (msg.documents.length !== 0) {
       msg.documents.forEach((element) => {
         const booksLiEl = document.createElement("li");
@@ -66,11 +71,8 @@ window.searchPost = () => {
             ? `<img class = "book-poster-none">`
             : `<img class = "book_poster" src="${element.thumbnail}" alt="${element.title}의 책 표지"/>`
         }
-                    <a class = 'info' bookId = "${element.isbn}">
-                    <p>${bookTitleEl}</p>
-                    <p>${bookPriceEl}</p>
-                    </a>
-                    `;
+                    <a class = 'info' bookId = "${element.isbn}"></a>`;
+
         booksEl.append(booksLiEl);
         inputGroup.append(booksEl);
       });
@@ -85,19 +87,31 @@ window.searchPost = () => {
     }
 
     // 페이지네이션 기능
-
     const rowsCount = msg.meta.total_count; // 총 검색 결과 수 (항목의 총 개수)
     const pageCount = Math.ceil(rowsCount / rowsPerPage); // 최대 페이지 개수
-    const numbers = document.querySelector('#numbers');
-    
+    const numbers = document.querySelector("#numbers");
+    let maxPageNum = 10; //페이지 그룹 최대 개수
 
     console.log("rowsCount : " + rowsCount);
     console.log("pageCount : " + pageCount);
 
-    for(let a = 1; a <= pageCount; a++) {
-        numbers.innerHTML += `<li class = "page_box"><a href="${currentPage}">${a}</a></li>`;
+    for (let a = 1; a <= pageCount; a++) {
+      numbers.innerHTML += `<li class = "page_box"><a href="">${a}</a></li>`;
+    }
+    
+    const numbersBtn = numbers.querySelectorAll("a"); // 페이지네이션 클릭
+
+    numbersBtn.forEach((item, idx) => {
+      item.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        displayRow(idx);
+      });
+    });
+
+    function displayRow(idx) {
+      let start = idx * rowsPerPage;
+      console.log("start : " + start);
     }
   });
-
-
 };
