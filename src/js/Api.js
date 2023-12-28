@@ -22,16 +22,16 @@ window.searchPost = () => {
   pageButton.style.display = "block"; // 페이지 버튼 출력
 
   let pageNationHTML = "";
-  var pageSize = 1;
-  var countPerPage = 8; // 한 페이지당 n개씩 보여줄 것.
+  var currentPage = 1;
+  var rowsPerPage = 8; // 한 페이지당 n개씩 보여줄 것.
 
   $.ajax({
     method: "GET",
     url: `https://dapi.kakao.com/v3/search/book`,
     data: {
       query: searchQuery,
-      page: pageSize, // 결과 페이지 번호, 1~50 사이의 값, 기본 값 1
-      size: countPerPage, // 한 페이지에 보여질 문서 수, 1~50 사이의 값, 기본 값 10
+      page: currentPage, // 결과 페이지 번호, 1~50 사이의 값, 기본 값 1
+      size: rowsPerPage, // 한 페이지에 보여질 문서 수, 1~50 사이의 값, 기본 값 10
       target: "",
       status: "",
     },
@@ -41,7 +41,6 @@ window.searchPost = () => {
       // return Math.ceil(data.length / sizeVal); // data.length = 총 파싱해 온 데이터 수량
     },
   }).done((msg) => {
-    console.log(msg);
     if (msg.documents.length !== 0) {
       msg.documents.forEach((element) => {
         const booksLiEl = document.createElement("li");
@@ -84,30 +83,21 @@ window.searchPost = () => {
       inputGroup.append(noResults);
       pageButton.style.display = "none";
     }
+
+    // 페이지네이션 기능
+
+    const rowsCount = msg.meta.total_count; // 총 검색 결과 수 (항목의 총 개수)
+    const pageCount = Math.ceil(rowsCount / rowsPerPage); // 최대 페이지 개수
+    const numbers = document.querySelector('#numbers');
+    
+
+    console.log("rowsCount : " + rowsCount);
+    console.log("pageCount : " + pageCount);
+
+    for(let a = 1; a <= pageCount; a++) {
+        numbers.innerHTML += `<li class = "page_box"><a href="${currentPage}">${a}</a></li>`;
+    }
   });
 
-
-  // 페이지 버튼 클릭 이벤트
-
-  var page_box = document.getElementsByClassName("page_box");
-
-  function handleClick(event) {
-    console.log(this);
-
-    if (event.target.classList[1] === "clicked") { //event.target -> 이벤트가 일어날 객체
-      event.target.classList.add("clicked");
-    } else {
-      for (var i = 0; i < page_box.length; i++) {
-        page_box[i].classList.remove("clicked");
-      }
-      event.target.classList.add("clicked");
-    }
-  }
-  function init() {
-    for (var i = 0; i < page_box.length; i++) {
-      page_box[i].addEventListener("click", handleClick);
-    }
-  }
-  init();
 
 };
