@@ -9,11 +9,12 @@ window.enterkeySearch = () => {
 window.searchPost = () => {
   let searchQuery = $(".search-entry").val();
 
-  const inputGroup = document.querySelector(".input-group");
-  if (searchQuery == '') {
-    inputGroup.style.display = "block";
+  if (searchQuery == "") {
+    $(".input-group").focus();
+    return;
   }
 
+  const inputGroup = document.querySelector(".input-group");
   //  const beforeResult = document.querySelector(".beforeResult");
   //   const loadingScreen = document.querySelector(".onStandby");
   const pageButton = document.querySelector(".pagingBlock");
@@ -41,9 +42,7 @@ window.searchPost = () => {
     },
     headers: { Authorization: "KakaoAK 0c604b6d9932c79e6b756db42c60334b" },
     // 쿼리 파라미터 갯수 요청하기
-    success: function () {
-      // return Math.ceil(data.length / sizeVal); // data.length = 총 파싱해 온 데이터 수량
-    },
+
   }).done((msg) => {
     console.log(msg);
     if (msg.documents.length !== 0) {
@@ -90,15 +89,25 @@ window.searchPost = () => {
     const rowsCount = msg.meta.total_count; // 총 검색 결과 수 (항목의 총 개수)
     const pageCount = Math.ceil(rowsCount / rowsPerPage); // 최대 페이지 개수
     const numbers = document.querySelector("#numbers");
-    let maxPageNum = 10; //페이지 그룹 최대 개수
+    const prevBtn = document.querySelector(".page_box"); // 이전페이지 버튼
+    const nextBtn = document.querySelector(".page_box"); // 다음페이지 버튼
+    let maxPageNum = 5; //페이지 그룹 최대 개수
+    let pageActiveIdx =0; //현재 페이지 그룹의 번호
 
+    numbers.innerHTML = '';
     console.log("rowsCount : " + rowsCount);
     console.log("pageCount : " + pageCount);
 
-    for (let a = 1; a <= pageCount; a++) {
-      numbers.innerHTML += `<li class = "page_box"><a href="">${a}</a></li>`;
+    if (pageCount > 10) {
+      for (let a = 1; a <= 10; a++) {
+        numbers.innerHTML += `<li class = "page_box"><a href="">${a}</a></li>`;
+      }
+    } else {
+      for (let a = 1; a <= pageCount; a++) {
+        numbers.innerHTML += `<li class = "page_box"><a href="">${a}</a></li>`;
+      }
     }
-    
+
     const numbersBtn = numbers.querySelectorAll("a"); // 페이지네이션 클릭
 
     numbersBtn.forEach((item, idx) => {
@@ -113,5 +122,25 @@ window.searchPost = () => {
       let start = idx * rowsPerPage;
       console.log("start : " + start);
     }
+
+    // 페이지네이션 그룹표시 함수
+    function displayPage(num){
+        console.log(num);
+        const totalPageCount = Math.ceil(pageCount / maxPageNum);
+        let pageArr = [...numbersBtn];
+
+        let start = num * maxPageNum;
+        let end = start + maxPageNum;
+        let pageListArr = pageArr.slice(start, end);
+
+        for(pa of pageListArr) {
+            pa.style.display = 'block';
+        }
+
+        // 첫 페이지에 화살표 안보이게
+        
+
+    }
+    displayPage(0);
   });
 };
