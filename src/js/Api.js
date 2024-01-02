@@ -27,7 +27,8 @@ window.searchPost = () => {
   pageButton.style.display = "block"; // 페이지 버튼 출력
 
   let pageNationHTML = "";
-  var currentPage = 1; // 현재 보고있는 페이지 번호
+  var currentPage = num; // 현재 보고있는 페이지 번호
+  $("input[name='curPage']").val(currentPage);
   var rowsPerPage = 8; // 한 페이지당 n개씩 보여줄 것.
 
   $.ajax({
@@ -42,7 +43,6 @@ window.searchPost = () => {
     },
     headers: { Authorization: "KakaoAK 0c604b6d9932c79e6b756db42c60334b" },
     // 쿼리 파라미터 갯수 요청하기
-
   }).done((msg) => {
     console.log(msg);
     if (msg.documents.length !== 0) {
@@ -86,15 +86,16 @@ window.searchPost = () => {
     }
 
     // 페이지네이션 기능
+    const rows = document.querySelectorAll(".pagingBlock li");
     const rowsCount = msg.meta.total_count; // 총 검색 결과 수 (항목의 총 개수)
     const pageCount = Math.ceil(rowsCount / rowsPerPage); // 최대 페이지 개수
     const numbers = document.querySelector("#numbers");
-    const prevBtn = document.querySelector(".page_box"); // 이전페이지 버튼
-    const nextBtn = document.querySelector(".page_box"); // 다음페이지 버튼
-    let maxPageNum = 5; //페이지 그룹 최대 개수
-    let pageActiveIdx =0; //현재 페이지 그룹의 번호
+    const prevBtn = document.querySelector(".page_box .fa-arrow-left"); // 이전페이지 버튼
+    const nextBtn = document.querySelector(".page_box .fa-arrow-right"); // 다음페이지 버튼
+    let maxPageNum = 3; //페이지 그룹 최대 개수
+    let pageActiveIdx = 0; //현재 페이지 그룹의 번호
 
-    numbers.innerHTML = '';
+    numbers.innerHTML = "";
     console.log("rowsCount : " + rowsCount);
     console.log("pageCount : " + pageCount);
 
@@ -108,37 +109,42 @@ window.searchPost = () => {
       }
     }
 
-    const numbersBtn = numbers.querySelectorAll("a"); // 페이지네이션 클릭
+    const numbersBtn = numbers.querySelectorAll("li"); // 페이지네이션 클릭
 
     numbersBtn.forEach((item, idx) => {
       item.addEventListener("click", (e) => {
-        e.preventDefault();
+        // e.preventDefault();
 
         displayRow(idx);
       });
     });
 
     function displayRow(idx) {
-      let start = idx * rowsPerPage;
-      console.log("start : " + start);
+      // let start = idx * rowsPerPage;
+      // let end = start + rowsPerPage;
+      // let rowsArray = [...rows];
+
+      // let newRows = rowsArray.slice(start, end);
+      // for (nr of newRows) {
+      //   // nr.style.display = "";
+      // }
+
+      // 페이지 버튼 클릭시 css적용
+      for (nb of numbersBtn) {
+        nb.classList.remove("clicked");
+      }
+      numbersBtn[idx].classList.add("clicked");
     }
+    displayRow(0);
 
     // 페이지네이션 그룹표시 함수
-    function displayPage(num){
-        console.log(num);
-        const totalPageCount = Math.ceil(pageCount / maxPageNum);
-        let pageArr = [...numbersBtn];
-
-        let start = num * maxPageNum;
-        let end = start + maxPageNum;
-        let pageListArr = pageArr.slice(start, end);
-
-        for(pa of pageListArr) {
-            pa.style.display = 'block';
-        }
-
-        // 첫 페이지에 화살표 안보이게
-        
+    function displayPage(number) {
+      console.log(number);
+      const totalPageCount = Math.ceil(pageCount / maxPageNum);
+      let pageArr = [...numbersBtn];
+      let start = number * maxPageNum;
+      let end = start + maxPageNum;
+      let pageListArr = pageArr.slice(start, end);
 
     }
     displayPage(0);
