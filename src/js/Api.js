@@ -1,12 +1,15 @@
+// var currentPage = 1; // 현재 보고있는 페이지 번호
+
 //검색창에 엔터 치면 결과가 나오도록 함
 // searchPost()실행
 window.enterkeySearch = () => {
   if (window.event.keyCode == 13) {
-    searchPost();
+    searchPost(0);
   }
 };
 
-window.searchPost = () => {
+
+function searchPost(currentPage) {
   let searchQuery = $(".search-entry").val();
 
   if (searchQuery == "") {
@@ -27,8 +30,7 @@ window.searchPost = () => {
   pageButton.style.display = "block"; // 페이지 버튼 출력
 
   let pageNationHTML = "";
-  var currentPage = num; // 현재 보고있는 페이지 번호
-  $("input[name='curPage']").val(currentPage);
+  
   var rowsPerPage = 8; // 한 페이지당 n개씩 보여줄 것.
 
   $.ajax({
@@ -36,7 +38,7 @@ window.searchPost = () => {
     url: `https://dapi.kakao.com/v3/search/book`,
     data: {
       query: searchQuery,
-      page: currentPage, // 결과 페이지 번호, 1~50 사이의 값, 기본 값 1
+      page: currentPage + 1, // 결과 페이지 번호, 1~50 사이의 값, 기본 값 1
       size: rowsPerPage, // 한 페이지에 보여질 문서 수, 1~50 사이의 값, 기본 값 10
       target: "",
       status: "",
@@ -86,7 +88,6 @@ window.searchPost = () => {
     }
 
     // 페이지네이션 기능
-    const rows = document.querySelectorAll(".pagingBlock li");
     const rowsCount = msg.meta.total_count; // 총 검색 결과 수 (항목의 총 개수)
     const pageCount = Math.ceil(rowsCount / rowsPerPage); // 최대 페이지 개수
     const numbers = document.querySelector("#numbers");
@@ -96,57 +97,58 @@ window.searchPost = () => {
     let pageActiveIdx = 0; //현재 페이지 그룹의 번호
 
     numbers.innerHTML = "";
-    console.log("rowsCount : " + rowsCount);
-    console.log("pageCount : " + pageCount);
 
     if (pageCount > 10) {
       for (let a = 1; a <= 10; a++) {
-        numbers.innerHTML += `<li class = "page_box"><a href="">${a}</a></li>`;
+        // prevBtn.innerHTML += `<li class = "page_box"><a></a></li>`;
+        numbers.innerHTML += `<li class = "page_box"><a>${a}</a></li>`;
       }
     } else {
       for (let a = 1; a <= pageCount; a++) {
-        numbers.innerHTML += `<li class = "page_box"><a href="">${a}</a></li>`;
+        numbers.innerHTML += `<li class = "page_box"><a>${a}</a></li>`;
       }
     }
 
     const numbersBtn = numbers.querySelectorAll("li"); // 페이지네이션 클릭
+    numbersBtn.disabled = false;
 
     numbersBtn.forEach((item, idx) => {
       item.addEventListener("click", (e) => {
-        // e.preventDefault();
+        e.preventDefault();
+      
+        //book list update
+        searchPost(idx);
 
+        //pagination update
         displayRow(idx);
       });
     });
 
+
+    displayRow(currentPage);
+
     function displayRow(idx) {
-      // let start = idx * rowsPerPage;
-      // let end = start + rowsPerPage;
-      // let rowsArray = [...rows];
-
-      // let newRows = rowsArray.slice(start, end);
-      // for (nr of newRows) {
-      //   // nr.style.display = "";
-      // }
-
+  
       // 페이지 버튼 클릭시 css적용
       for (nb of numbersBtn) {
         nb.classList.remove("clicked");
       }
       numbersBtn[idx].classList.add("clicked");
     }
-    displayRow(0);
 
-    // 페이지네이션 그룹표시 함수
-    function displayPage(number) {
-      console.log(number);
+    function displayPage(num) {
+      console.log(num);
       const totalPageCount = Math.ceil(pageCount / maxPageNum);
       let pageArr = [...numbersBtn];
-      let start = number * maxPageNum;
+      let start = num * maxPageNum;
       let end = start + maxPageNum;
       let pageListArr = pageArr.slice(start, end);
-
+  
     }
+  
+    // 페이지네이션 그룹표시 함수
     displayPage(0);
   });
+
+
 };
