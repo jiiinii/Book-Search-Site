@@ -23,7 +23,7 @@ function searchPost(currentPage) {
 
   beforeResult.style.display = "none"; // 검색 실행 시 첫 화면 사라짐
   loadingScreen.style.display = "block";
-  
+
   setTimeout(function () {
     var rowsPerPage = 8; // 한 페이지당 n개씩 보여줄 것.
 
@@ -65,12 +65,11 @@ function searchPost(currentPage) {
           if (element.price) {
             bookPriceEl = element.price;
           }
-          
-          booksLiEl.innerHTML = `${
-            element.thumbnail === ""
+
+          booksLiEl.innerHTML = `${element.thumbnail === ""
               ? `<img class = "book-poster-none">`
               : `<img class = "book_poster" src="${element.thumbnail}" alt="${element.title}의 책 표지"/>`
-          }
+            }
           <a class = 'info' bookId = "${element.isbn}"></a>`;
 
           booksEl.append(booksLiEl);
@@ -88,15 +87,29 @@ function searchPost(currentPage) {
 
       // 페이지네이션 기능
       const rowsCount = msg.meta.total_count; // 총 검색 결과 수 (항목의 총 개수)
-      const pageCount = Math.ceil(rowsCount / rowsPerPage); // 최대 페이지 개수
+      const pageCount = Math.ceil(rowsCount / rowsPerPage); // 총 페이지 개수
+      const btnGroup = Math.ceil(pageCount / 5);
       const numbers = document.querySelector("#numbers");
-      const prevBtn = document.querySelector(".page_box .fa-arrow-left"); // 이전페이지 버튼
-      const nextBtn = document.querySelector(".page_box .fa-arrow-right"); // 다음페이지 버튼
-      let maxPageNum = 3; //페이지 그룹 최대 개수
-      let pageActiveIdx = 0; //현재 페이지 그룹의 번호
+      console.log("rowsCount : " + rowsCount);
+      console.log("pageCount : " + pageCount);
+
+      let last = btnGroup * 5; // 화면에 그려질 마지막 페이지
+      let first = last - (5 - 1) <= 0 ? 1 : last - (5 - 1); // 화면에 그려질 첫번째 페이지
+      const prev = first - 1;
+      const next = last + 1;
+
+      if(pageCount < 1) {
+        first = last;
+      }
+
+      console.log(last);
+      console.log(first);
+      console.log(prev);
+      console.log(next);
 
       numbers.innerHTML = "";
 
+      const fragmentPage = document.createDocumentFragment();
       if (pageCount > 10) {
         for (let a = 1; a <= 10; a++) {
           numbers.innerHTML += `<li class = "page_box"><a>${a}</a></li>`;
@@ -145,4 +158,4 @@ function searchPost(currentPage) {
       // displayPage(0);
     });
   }, 500);
-}
+}                                                                                                                                                                                                                                                                                                                                                            
