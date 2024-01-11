@@ -273,6 +273,7 @@ img {
   background-color: var(--main-color);
   color: white;
   border: 1px solid var(--main-color);
+  pointer-events: none;
 }
 
 /* -------------------- Footer ------------------------- */
