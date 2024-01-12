@@ -47,7 +47,6 @@ function searchPost(currentPage) {
 
       if (msg.documents.length !== 0) {
         msg.documents.forEach((element) => {
-
           const booksLiEl = document.createElement("li");
           booksLiEl.className = "books";
 
@@ -66,10 +65,11 @@ function searchPost(currentPage) {
             bookPriceEl = element.price;
           }
 
-          booksLiEl.innerHTML = `${element.thumbnail === ""
+          booksLiEl.innerHTML = `${
+            element.thumbnail === ""
               ? `<img class = "book-poster-none">`
               : `<img class = "book_poster" src="${element.thumbnail}" alt="${element.title}의 책 표지"/>`
-            }
+          }
           <a class = 'info' bookId = "${element.isbn}"></a>`;
 
           booksEl.append(booksLiEl);
@@ -88,36 +88,52 @@ function searchPost(currentPage) {
       // 페이지네이션 기능
       const rowsCount = msg.meta.total_count; // 총 검색 결과 수 (항목의 총 개수)
       const pageCount = Math.ceil(rowsCount / rowsPerPage); // 총 페이지 개수
-      const btnGroup = Math.ceil(pageCount / 5);
+      const pageGroup = Math.ceil(pageCount / 5);
       const numbers = document.querySelector("#numbers");
       console.log("rowsCount : " + rowsCount);
       console.log("pageCount : " + pageCount);
 
-      let last = btnGroup * 5; // 화면에 그려질 마지막 페이지
-      let first = last - (5 - 1) <= 0 ? 1 : last - (5 - 1); // 화면에 그려질 첫번째 페이지
+      let last = pageGroup * 5; // 화면에 그려질 마지막 페이지
+      if (last > pageCount) last = pageCount
+      let first = last - (5 - 1) < 1 ? 1 : last - (5 - 1); // 화면에 그려질 첫번째 페이지 번호
       const prev = first - 1;
       const next = last + 1;
 
-      if(pageCount < 1) {
-        first = last;
-      }
-
-      console.log(last);
-      console.log(first);
-      console.log(prev);
-      console.log(next);
+      console.log("last : " + last);
+      console.log("first : " + first);
+      console.log("prev : " + prev);
+      console.log("next : " + next);
 
       numbers.innerHTML = "";
 
-      const fragmentPage = document.createDocumentFragment();
-      if (pageCount > 10) {
-        for (let a = 1; a <= 10; a++) {
-          numbers.innerHTML += `<li class = "page_box"><a>${a}</a></li>`;
-        }
+      // if (pageCount > 10) {
+      //   for (let a = 1; a <= 10; a++) {
+      //     numbers.innerHTML += `<li class = "page_box"><a>${a}</a></li>`;
+      //   }
+      // } else {
+      //   for (let a = 1; a <= pageCount; a++) {
+      //     numbers.innerHTML += `<li class = "page_box"><a>${a}</a></li>`;
+      //   }
+      // }
+
+      if (prev == 0) {
+        numbers.innerHTML += `<li class = "page_box"><a><<</a></li>`
+        numbers.innerHTML += `<li class = "page_box"><a><</a></li>`
       } else {
-        for (let a = 1; a <= pageCount; a++) {
-          numbers.innerHTML += `<li class = "page_box"><a>${a}</a></li>`;
-        }
+        numbers.innerHTML += `<li class = "page_box"><a><<</a></li>`
+        numbers.innerHTML += `<li class = "page_box"><a><</a></li>`
+      }
+
+      for (var i = first; i < last; i++) {
+        numbers.innerHTML += `<li class = "page_box"><a id= ${i}> ${i} </a></li>`
+      }
+
+      if (last > pageCount) {
+        numbers.innerHTML += `<li class = "page_box"><a id='next'>></a></li>`
+        numbers.innerHTML += `<li class = "page_box"><a id='last'>>></a></li>`
+      } else {
+        numbers.innerHTML += `<li class = "page_box"><a id='next'>></a></li>`
+        numbers.innerHTML += `<li class = "page_box"><a id='last'>>></a></li>`
       }
 
       const numbersBtn = numbers.querySelectorAll("li"); // 페이지네이션 클릭
@@ -158,4 +174,4 @@ function searchPost(currentPage) {
       // displayPage(0);
     });
   }, 500);
-}                                                                                                                                                                                                                                                                                                                                                            
+}
