@@ -2,7 +2,7 @@
 // searchPost()실행
 window.enterkeySearch = () => {
   if (window.event.keyCode == 13) {
-    searchPost(0);
+    searchPost(1);
   }
 };
 
@@ -20,19 +20,20 @@ function searchPost(currentPage) {
   const pageButton = document.querySelector(".pagingBlock");
   const booksEl = document.createElement("ul");
   booksEl.className = "booksList";
+  const pageCal = 10;
 
   beforeResult.style.display = "none"; // 검색 실행 시 첫 화면 사라짐
   loadingScreen.style.display = "block";
 
   setTimeout(function () {
-    var rowsPerPage = 8; // 한 페이지당 n개씩 보여줄 것.
+    const rowsPerPage = 8; // 한 페이지당 n개씩 보여줄 것.
 
     $.ajax({
       method: "GET",
       url: `https://dapi.kakao.com/v3/search/book`,
       data: {
         query: searchQuery,
-        page: currentPage + 1, // 결과 페이지 번호, 1~50 사이의 값, 기본 값 1
+        page: currentPage, // 결과 페이지 번호, 1~50 사이의 값, 기본 값 1
         size: rowsPerPage, // 한 페이지에 보여질 문서 수, 1~50 사이의 값, 기본 값 10
         target: "",
         status: "",
@@ -90,68 +91,55 @@ function searchPost(currentPage) {
       const pageCount = Math.ceil(rowsCount / rowsPerPage); // 총 페이지 개수
       const pageGroup = Math.ceil(pageCount / 5);
       const numbers = document.querySelector("#numbers");
-      console.log("rowsCount : " + rowsCount);
-      console.log("pageCount : " + pageCount);
+      // console.log("rowsCount : " + rowsCount);
+      // console.log("pageCount : " + pageCount);
 
       let last = pageGroup * 5; // 화면에 그려질 마지막 페이지
       if (last > pageCount) last = pageCount
-      let first = last - (5 - 1) < 1 ? 1 : last - (5 - 1); // 화면에 그려질 첫번째 페이지 번호
+      let first = Math.floor((currentPage -1) / pageCal) * 10 + 1;
       const prev = first - 1;
       const next = last + 1;
 
-      console.log("last : " + last);
+      // console.log("last : " + last);
       console.log("first : " + first);
       console.log("prev : " + prev);
-      console.log("next : " + next);
+      // console.log("next : " + next);
 
       numbers.innerHTML = "";
 
-      // if (pageCount > 10) {
-      //   for (let a = 1; a <= 10; a++) {
-      //     numbers.innerHTML += `<li class = "page_box"><a>${a}</a></li>`;
-      //   }
-      // } else {
-      //   for (let a = 1; a <= pageCount; a++) {
-      //     numbers.innerHTML += `<li class = "page_box"><a>${a}</a></li>`;
-      //   }
-      // }
-
-      if (prev == 0) {
-        numbers.innerHTML += `<li class = "page_box"><a><<</a></li>`
+      let number = 0;
+      if (currentPage != 1) {
         numbers.innerHTML += `<li class = "page_box"><a><</a></li>`
-      } else {
-        numbers.innerHTML += `<li class = "page_box"><a><<</a></li>`
-        numbers.innerHTML += `<li class = "page_box"><a><</a></li>`
+        number = 1;
       }
 
-      for (var i = first; i < last; i++) {
+      for (var i = first; i < first + 10; i++) {
         numbers.innerHTML += `<li class = "page_box"><a id= ${i}> ${i} </a></li>`
       }
 
       if (last > pageCount) {
         numbers.innerHTML += `<li class = "page_box"><a id='next'>></a></li>`
-        numbers.innerHTML += `<li class = "page_box"><a id='last'>>></a></li>`
-      } else {
-        numbers.innerHTML += `<li class = "page_box"><a id='next'>></a></li>`
-        numbers.innerHTML += `<li class = "page_box"><a id='last'>>></a></li>`
       }
 
+      
       const numbersBtn = numbers.querySelectorAll("li"); // 페이지네이션 클릭
+      displayRow(currentPage-1);
 
       numbersBtn.forEach((item, idx) => {
         item.addEventListener("click", (e) => {
           e.preventDefault();
 
+          console.log("idx + 1 : " + (idx+1));
+          console.log("e.target.id : " + e.target.id);
+
           //book list update
           booksEl.innerHTML = "";
-          searchPost(idx);
+          searchPost(idx+1);
 
           //pagination update
-          displayRow(idx);
+          // displayRow(idx);
         });
       });
-
-      displayRow(currentPage);
 
       function displayRow(idx) {
         // 페이지 버튼 클릭시 css적용
@@ -160,18 +148,6 @@ function searchPost(currentPage) {
         }
         numbersBtn[idx].classList.add("clicked");
       }
-
-      // function displayPage(num) {
-      //   console.log(num);
-      //   const totalPageCount = Math.ceil(pageCount / maxPageNum);
-      //   let pageArr = [...numbersBtn];
-      //   let start = num * maxPageNum;
-      //   let end = start + maxPageNum;
-      //   let pageListArr = pageArr.slice(start, end);
-      // }
-
-      // // 페이지네이션 그룹표시 함수
-      // displayPage(0);
     });
   }, 500);
 }
