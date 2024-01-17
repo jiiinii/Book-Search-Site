@@ -91,12 +91,12 @@ function searchPost(currentPage) {
       const pageCount = Math.ceil(rowsCount / rowsPerPage); // 총 페이지 개수
       const pageGroup = Math.ceil(pageCount / 5);
       const numbers = document.querySelector("#numbers");
-      // console.log("rowsCount : " + rowsCount);
-      // console.log("pageCount : " + pageCount);
+      console.log("rowsCount : " + rowsCount);
+      console.log("pageCount : " + pageCount);
 
-      let last = pageGroup * 5; // 화면에 그려질 마지막 페이지
-      if (last > pageCount) last = pageCount
-      let first = Math.floor((currentPage -1) / pageCal) * 10 + 1;
+      let last = pageGroup * 10; // 화면에 그려질 마지막 페이지
+      if (last > pageCount) last = pageCount;
+      let first = Math.floor((currentPage - 1) / pageCal) * 10 + 1;
       const prev = first - 1;
       const next = last + 1;
 
@@ -107,34 +107,43 @@ function searchPost(currentPage) {
 
       numbers.innerHTML = "";
 
-      let number = 0;
-      if (currentPage != 1) {
-        numbers.innerHTML += `<li class = "page_box"><a><</a></li>`
-        number = 1;
-      }
+      const renderButton = (first) => {
+        // let number = 0;
+        // if (currentPage != 1) {
+        //   numbers.innerHTML += `<li class = "page_box"><a><</a></li>`;
+        //   number = 1;
+        // }
+        if (first > first + 10) {
+          numbers.innerHTML += `<li class = "page_box"><a><</a></li>`;
+        }
 
-      for (var i = first; i < first + 10; i++) {
-        numbers.innerHTML += `<li class = "page_box"><a id= ${i}> ${i} </a></li>`
-      }
+        for (var i = first; i < first + 10; i++) {
+          numbers.innerHTML += `<li class = "page_box"><a id= ${i}> ${i} </a></li>`;
+        }
 
-      if (last > pageCount) {
-        numbers.innerHTML += `<li class = "page_box"><a id='next'>></a></li>`
-      }
+        if (first < first + 10) {
+          numbers.innerHTML += `<li class = "page_box"><a>></a></li>`;
+        }
+      };
 
-      
+      const render = (first) => {
+        renderButton(first);
+      };
+      render(first);
+
       const numbersBtn = numbers.querySelectorAll("li"); // 페이지네이션 클릭
-      displayRow(currentPage-1);
+      displayRow(currentPage - 1);
 
       numbersBtn.forEach((item, idx) => {
         item.addEventListener("click", (e) => {
           e.preventDefault();
 
-          console.log("idx + 1 : " + (idx+1));
+          console.log("idx + 1 : " + (idx + 1));
           console.log("e.target.id : " + e.target.id);
 
           //book list update
           booksEl.innerHTML = "";
-          searchPost(idx+1);
+          searchPost(idx + 1);
 
           //pagination update
           // displayRow(idx);
