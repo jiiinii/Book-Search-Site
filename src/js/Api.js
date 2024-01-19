@@ -89,47 +89,36 @@ function searchPost(currentPage) {
       // 페이지네이션 기능
       const rowsCount = msg.meta.total_count; // 총 검색 결과 수 (항목의 총 개수)
       const pageCount = Math.ceil(rowsCount / rowsPerPage); // 총 페이지 개수
-      const pageGroup = Math.ceil(pageCount / 5);
+      // const pageGroup = Math.ceil(pageCount / 5);
       const numbers = document.querySelector("#numbers");
+
       console.log("rowsCount : " + rowsCount);
       console.log("pageCount : " + pageCount);
 
-      let last = pageGroup * 10; // 화면에 그려질 마지막 페이지
-      if (last > pageCount) last = pageCount;
+      // let last = pageGroup * 10; // 화면에 그려질 마지막 페이지
+      // if (last > pageCount) last = pageCount;
       let first = Math.floor((currentPage - 1) / pageCal) * 10 + 1;
-      const prev = first - 1;
-      const next = last + 1;
+      let last = (first + 10) > pageCount ? pageCount + 1 : (first + 10);
+      // const prev = first - 1;
+      // const next = last + 1;
 
-      // console.log("last : " + last);
       console.log("first : " + first);
-      console.log("prev : " + prev);
-      // console.log("next : " + next);
+      console.log("last : " + last);
 
       numbers.innerHTML = "";
 
-      const renderButton = (first) => {
-        // let number = 0;
-        // if (currentPage != 1) {
-        //   numbers.innerHTML += `<li class = "page_box"><a><</a></li>`;
-        //   number = 1;
-        // }
-        if (first > first + 10) {
+        if (first >= 11) {
           numbers.innerHTML += `<li class = "page_box"><a><</a></li>`;
         }
 
-        for (var i = first; i < first + 10; i++) {
+        for (var i = first; i < last; i++) {
           numbers.innerHTML += `<li class = "page_box"><a id= ${i}> ${i} </a></li>`;
+          console.log("i : " + i);
         }
 
-        if (first < first + 10) {
+        if ((last - first) == 10 && (last - 1) != pageCount) {
           numbers.innerHTML += `<li class = "page_box"><a>></a></li>`;
         }
-      };
-
-      const render = (first) => {
-        renderButton(first);
-      };
-      render(first);
 
       const numbersBtn = numbers.querySelectorAll("li"); // 페이지네이션 클릭
       displayRow(currentPage - 1);
@@ -146,11 +135,12 @@ function searchPost(currentPage) {
           searchPost(idx + 1);
 
           //pagination update
-          // displayRow(idx);
+          displayRow(idx);
         });
       });
 
       function displayRow(idx) {
+        console.log("idx : " + idx);
         // 페이지 버튼 클릭시 css적용
         for (nb of numbersBtn) {
           nb.classList.remove("clicked");
