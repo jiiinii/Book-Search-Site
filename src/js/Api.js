@@ -6,8 +6,13 @@ window.enterkeySearch = () => {
   }
 };
 
-function searchPost(currentPage) {
+let pageNum;
+
+const searchPost = (currentPage) => {
+  console.log("currentPage >>> " + currentPage);
   let searchQuery = $(".search-entry").val();
+
+  pageNum = 1;
 
   if (searchQuery == "") {
     $(".beforeResult").focus();
@@ -18,15 +23,16 @@ function searchPost(currentPage) {
   const beforeResult = document.querySelector(".beforeResult");
   const loadingScreen = document.querySelector(".onStandby");
   const pageButton = document.querySelector(".pagingBlock");
-  const booksEl = document.createElement("ul");
-  booksEl.className = "booksList";
+  const booksEl = inputGroup.querySelector(".booksList");
+  booksEl.innerHTML = "";
+
   const pageCal = 10;
 
   beforeResult.style.display = "none"; // 검색 실행 시 첫 화면 사라짐
   loadingScreen.style.display = "block";
 
   setTimeout(function () {
-    const rowsPerPage = 8; // 한 페이지당 n개씩 보여줄 것.
+    const rowsPerPage = 40; // 한 페이지당 n개씩 보여줄 것.
 
     $.ajax({
       method: "GET",
@@ -89,18 +95,13 @@ function searchPost(currentPage) {
       // 페이지네이션 기능
       const rowsCount = msg.meta.total_count; // 총 검색 결과 수 (항목의 총 개수)
       const pageCount = Math.ceil(rowsCount / rowsPerPage); // 총 페이지 개수
-      // const pageGroup = Math.ceil(pageCount / 5);
       const numbers = document.querySelector("#numbers");
 
       console.log("rowsCount : " + rowsCount);
       console.log("pageCount : " + pageCount);
 
-      // let last = pageGroup * 10; // 화면에 그려질 마지막 페이지
-      // if (last > pageCount) last = pageCount;
       let first = Math.floor((currentPage - 1) / pageCal) * 10 + 1;
       let last = (first + 10) > pageCount ? pageCount + 1 : (first + 10);
-      // const prev = first - 1;
-      // const next = last + 1;
 
       console.log("first : " + first);
       console.log("last : " + last);
@@ -132,16 +133,19 @@ function searchPost(currentPage) {
 
           //book list update
           booksEl.innerHTML = "";
-          searchPost(idx + 1);
-
-          //pagination update
-          displayRow(idx);
+          searchPost(idx + pageNum);
         });
       });
 
       function displayRow(idx) {
         console.log("idx : " + idx);
         // 페이지 버튼 클릭시 css적용
+
+        if (idx >= 10) {
+          const idxTmp = Math.floor(idx / 10);
+          pageNum = idxTmp * 10;
+        }
+
         for (nb of numbersBtn) {
           nb.classList.remove("clicked");
         }
