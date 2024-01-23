@@ -101,25 +101,25 @@ const searchPost = (currentPage) => {
       console.log("pageCount : " + pageCount);
 
       let first = Math.floor((currentPage - 1) / pageCal) * 10 + 1;
-      let last = (first + 10) > pageCount ? pageCount + 1 : (first + 10);
+      let last = first + 10 > pageCount ? pageCount + 1 : first + 10;
 
       console.log("first : " + first);
       console.log("last : " + last);
 
       numbers.innerHTML = "";
 
-        if (first >= 11) {
-          numbers.innerHTML += `<li class = "page_box"><a><</a></li>`;
-        }
+      if (first >= 11) {
+        numbers.innerHTML += `<li class = "page_box"><a><</a></li>`;
+      }
 
-        for (var i = first; i < last; i++) {
-          numbers.innerHTML += `<li class = "page_box"><a id= ${i}> ${i} </a></li>`;
-          console.log("i : " + i);
-        }
+      for (var i = first; i < last; i++) {
+        numbers.innerHTML += `<li class = "page_box"><a id= ${i}> ${i} </a></li>`;
+        console.log("i : " + i);
+      }
 
-        if ((last - first) == 10 && (last - 1) != pageCount) {
-          numbers.innerHTML += `<li class = "page_box"><a>></a></li>`;
-        }
+      if (last - first == 10 && last - 1 != pageCount) {
+        numbers.innerHTML += `<li class = "page_box"><a>></a></li>`;
+      }
 
       const numbersBtn = numbers.querySelectorAll("li"); // 페이지네이션 클릭
       displayRow(currentPage - 1);
@@ -137,20 +137,24 @@ const searchPost = (currentPage) => {
         });
       });
 
+      // 페이지 버튼 클릭시 css적용
       function displayRow(idx) {
         console.log("idx : " + idx);
-        // 페이지 버튼 클릭시 css적용
+
+        let tmp = idx;
 
         if (idx >= 10) {
           const idxTmp = Math.floor(idx / 10);
+          tmp = idx - (10 * idxTmp) + 1;
           pageNum = idxTmp * 10;
         }
+        console.log("tmp >>> " + tmp);
 
         for (nb of numbersBtn) {
           nb.classList.remove("clicked");
         }
-        numbersBtn[idx].classList.add("clicked");
+        numbersBtn[tmp].classList.add("clicked");
       }
     });
   }, 500);
-}
+};
