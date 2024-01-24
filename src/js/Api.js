@@ -1,6 +1,3 @@
-import {searchMarkup} from "./searchMarkup.js";
-document.getElementById('library').innerHTML = searchMarkup;
-
 //검색창에 엔터 치면 결과가 나오도록 함
 // searchPost()실행
 window.enterkeySearch = () => {
@@ -12,7 +9,6 @@ window.enterkeySearch = () => {
 let pageNum;
 
 const searchPost = (currentPage) => {
-
   console.log("currentPage >>> " + currentPage);
   let searchQuery = $(".search-entry").val();
 
@@ -153,11 +149,11 @@ const searchPost = (currentPage) => {
           pageNum = idxTmp * 10;
         }
         console.log("tmp >>> " + tmp);
-        console.log("pageNum >>> " + pageNum);
 
-        if (numbersBtn.length > 0){
-        numbersBtn[tmp].classList.add("clicked");
+        for (nb of numbersBtn) {
+          nb.classList.remove("clicked");
         }
+        numbersBtn[tmp].classList.add("clicked");
       }
     });
   }, 500);
