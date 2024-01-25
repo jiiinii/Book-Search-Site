@@ -6,6 +6,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, '')));
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
+  res.sendFile(__dirname + "/searchMarkup.js");
 });
 
 app.listen(PORT, () => {
