@@ -1,9 +1,9 @@
 export const searchMarkup = `
 <form action="" method="search_line" onsubmit="return false">
 <input class="search-entry" type="input" placeholder="Search for book titles & authors"
-    onkeyup="enterkeySearch()" minlength="3" maxlength="250" required />
+    minlength="3" maxlength="250" required />
 <div class="filterFuction">
-    <button type="button" class="btn" onclick="searchPost(1)">Search</button>
+    <button type="submit" class="btn">Search</button>
 </div>
 </form>
 

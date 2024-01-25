@@ -7,6 +7,7 @@ app.use(express.static(path.join(__dirname, '')));
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
   res.sendFile(__dirname + "/searchMarkup.js");
+  res.sendFile(__dirname + "/index.js");
 });
 
 app.listen(PORT, () => {

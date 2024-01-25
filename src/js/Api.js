@@ -1,19 +1,18 @@
-import {searchMarkup} from "./searchMarkup.js";
-document.getElementById('library').innerHTML = searchMarkup;
+import { searchMarkup } from "./searchMarkup.js";
+document.getElementById("library").innerHTML = searchMarkup;
 
-//검색창에 엔터 치면 결과가 나오도록 함
-// searchPost()실행
-window.enterkeySearch = () => {
-  if (window.event.keyCode == 13) {
-    searchPost(1);
-  }
+const searchFormEl = document.querySelector("form");
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  searchPost(1);
 };
+
+searchFormEl.addEventListener("submit", handleSubmit);
 
 let pageNum;
 
 const searchPost = (currentPage) => {
-
-  console.log("currentPage >>> " + currentPage);
   let searchQuery = $(".search-entry").val();
 
   pageNum = 1;
@@ -35,7 +34,7 @@ const searchPost = (currentPage) => {
   beforeResult.style.display = "none"; // 검색 실행 시 첫 화면 사라짐
   loadingScreen.style.display = "block";
 
-  setTimeout(function () {
+  const greeting = () => {
     const rowsPerPage = 40; // 한 페이지당 n개씩 보여줄 것.
 
     $.ajax({
@@ -101,14 +100,8 @@ const searchPost = (currentPage) => {
       const pageCount = Math.ceil(rowsCount / rowsPerPage); // 총 페이지 개수
       const numbers = document.querySelector("#numbers");
 
-      console.log("rowsCount : " + rowsCount);
-      console.log("pageCount : " + pageCount);
-
       let first = Math.floor((currentPage - 1) / pageCal) * 10 + 1;
       let last = first + 10 > pageCount ? pageCount + 1 : first + 10;
-
-      console.log("first : " + first);
-      console.log("last : " + last);
 
       numbers.innerHTML = "";
 
@@ -118,7 +111,6 @@ const searchPost = (currentPage) => {
 
       for (var i = first; i < last; i++) {
         numbers.innerHTML += `<li class = "page_box"><a id= ${i}> ${i} </a></li>`;
-        console.log("i : " + i);
       }
 
       if (last - first == 10 && last - 1 != pageCount) {
@@ -132,9 +124,6 @@ const searchPost = (currentPage) => {
         item.addEventListener("click", (e) => {
           e.preventDefault();
 
-          console.log("idx + 1 : " + (idx + 1));
-          console.log("e.target.id : " + e.target.id);
-
           //book list update
           booksEl.innerHTML = "";
           searchPost(idx + pageNum);
@@ -143,22 +132,19 @@ const searchPost = (currentPage) => {
 
       // 페이지 버튼 클릭시 css적용
       function displayRow(idx) {
-        console.log("idx : " + idx);
-
         let tmp = idx;
 
         if (idx >= 10) {
           const idxTmp = Math.floor(idx / 10);
-          tmp = idx - (10 * idxTmp) + 1;
+          tmp = idx - 10 * idxTmp + 1;
           pageNum = idxTmp * 10;
         }
-        console.log("tmp >>> " + tmp);
-        console.log("pageNum >>> " + pageNum);
 
-        if (numbersBtn.length > 0){
-        numbersBtn[tmp].classList.add("clicked");
+        if (numbersBtn.length > 0) {
+          numbersBtn[tmp].classList.add("clicked");
         }
       }
     });
-  }, 500);
+  };
+  setTimeout(greeting, 500);
 };
