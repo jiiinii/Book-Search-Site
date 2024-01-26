@@ -46,6 +46,7 @@ const searchPost = (currentPage) => {
         size: rowsPerPage, // 한 페이지에 보여질 문서 수, 1~50 사이의 값, 기본 값 10
         target: "",
         status: "",
+        async: true,
       },
       headers: { Authorization: "KakaoAK 0c604b6d9932c79e6b756db42c60334b" },
       // 쿼리 파라미터 갯수 요청하기
@@ -88,9 +89,9 @@ const searchPost = (currentPage) => {
       } else {
         const noResults = document.createElement("p");
         noResults.className = "no_result";
-        noResults.innerText =
-          "The book could not be found T.T \n\n Try searching another keyword.";
 
+        noResults.innerText =
+        "The book could not be found T.T \n\n Try searching another keyword.";
         inputGroup.append(noResults);
         pageButton.style.display = "none";
       }
