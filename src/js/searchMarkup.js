@@ -23,6 +23,7 @@ export const searchMarkup = `
         <p class="moment">Please wait a moment🎶</p>
     </div>
     <ul class="booksList"></ul>
+    <p class = "no_result"></p>
 </div>
 
 <!------------------------- page ------------------------->

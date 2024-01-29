@@ -1,4 +1,5 @@
 import { searchMarkup } from "./searchMarkup.js";
+import { searchSubmit } from "./searchSubmit.js";
 document.getElementById("library").innerHTML = searchMarkup;
 
 const searchFormEl = document.querySelector("form");
@@ -10,12 +11,8 @@ const handleSubmit = (e) => {
 
 searchFormEl.addEventListener("submit", handleSubmit);
 
-let pageNum;
-
 const searchPost = (currentPage) => {
   let searchQuery = $(".search-entry").val();
-
-  pageNum = 1;
 
   if (searchQuery == "") {
     $(".beforeResult").focus();
@@ -29,7 +26,9 @@ const searchPost = (currentPage) => {
   const booksEl = inputGroup.querySelector(".booksList");
   booksEl.innerHTML = "";
 
-  const pageCal = 10;
+  const noResults = document.querySelector(".no_result");
+  noResults.style.display = "none";
+  noResults.innerHTML = "";
 
   beforeResult.style.display = "none"; // 검색 실행 시 첫 화면 사라짐
   loadingScreen.style.display = "block";
@@ -76,76 +75,29 @@ const searchPost = (currentPage) => {
             bookPriceEl = element.price;
           }
 
-          booksLiEl.innerHTML = `${
-            element.thumbnail === ""
-              ? `<img class = "book-poster-none">`
-              : `<img class = "book_poster" src="${element.thumbnail}" alt="${element.title}의 책 표지"/>`
-          }
+          booksLiEl.innerHTML = `${element.thumbnail === ""
+            ? `<img class = "book-poster-none">`
+            : `<img class = "book_poster" src="${element.thumbnail}" alt="${element.title}의 책 표지"/>`
+            }
           <a class = 'info' bookId = "${element.isbn}"></a>`;
 
           booksEl.append(booksLiEl);
           inputGroup.append(booksEl);
         });
       } else {
-        const noResults = document.createElement("p");
-        noResults.className = "no_result";
+        noResults.innerHTML = "";
+        noResults.style.display = "block";
 
         noResults.innerText =
-        "The book could not be found T.T \n\n Try searching another keyword.";
+          "The book could not be found T.T \n\n Try searching another keyword.";
         inputGroup.append(noResults);
         pageButton.style.display = "none";
       }
 
-      // 페이지네이션 기능
-      const rowsCount = msg.meta.total_count; // 총 검색 결과 수 (항목의 총 개수)
-      const pageCount = Math.ceil(rowsCount / rowsPerPage); // 총 페이지 개수
-      const numbers = document.querySelector("#numbers");
-
-      let first = Math.floor((currentPage - 1) / pageCal) * 10 + 1;
-      let last = first + 10 > pageCount ? pageCount + 1 : first + 10;
-
-      numbers.innerHTML = "";
-
-      if (first >= 11) {
-        numbers.innerHTML += `<li class = "page_box"><a><</a></li>`;
-      }
-
-      for (var i = first; i < last; i++) {
-        numbers.innerHTML += `<li class = "page_box"><a id= ${i}> ${i} </a></li>`;
-      }
-
-      if (last - first == 10 && last - 1 != pageCount) {
-        numbers.innerHTML += `<li class = "page_box"><a>></a></li>`;
-      }
-
-      const numbersBtn = numbers.querySelectorAll("li"); // 페이지네이션 클릭
-      displayRow(currentPage - 1);
-
-      numbersBtn.forEach((item, idx) => {
-        item.addEventListener("click", (e) => {
-          e.preventDefault();
-
-          //book list update
-          booksEl.innerHTML = "";
-          searchPost(idx + pageNum);
-        });
-      });
-
-      // 페이지 버튼 클릭시 css적용
-      function displayRow(idx) {
-        let tmp = idx;
-
-        if (idx >= 10) {
-          const idxTmp = Math.floor(idx / 10);
-          tmp = idx - 10 * idxTmp + 1;
-          pageNum = idxTmp * 10;
-        }
-
-        if (numbersBtn.length > 0) {
-          numbersBtn[tmp].classList.add("clicked");
-        }
-      }
+      searchSubmit(msg, currentPage);
     });
   };
   setTimeout(greeting, 500);
 };
+
+export default searchPost;
