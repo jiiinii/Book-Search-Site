@@ -45,6 +45,10 @@ const uiBase = (msg, currentPage, rowsPerPage) => {
 
       booksEl.append(booksLiEl);
       inputGroup.append(booksEl);
+
+      booksLiEl.onclick = function () {
+        console.log("aaa");
+      };
     });
   } else {
     noResults.innerHTML = "";

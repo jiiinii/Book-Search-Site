@@ -1,5 +1,5 @@
 import { searchMarkup } from "./searchMarkup.js";
-import ui_Base from "./searchUI.js";
+import uiBase from "./searchUI.js";
 import * as searchFunction from "./searchFunction.js";
 
 document.getElementById("library").innerHTML = searchMarkup;
@@ -53,7 +53,7 @@ const searchPost = (currentPage) => {
       // 쿼리 파라미터 갯수 요청하기
     }).done((msg) => {
       console.log(msg);
-      ui_Base(msg, currentPage, rowsPerPage);
+      uiBase(msg, currentPage, rowsPerPage);
 
       const numbersBtn = numbers.querySelectorAll("li"); // 페이지네이션 클릭
       pageNum = searchFunction.pageButtonClick(currentPage - 1);
