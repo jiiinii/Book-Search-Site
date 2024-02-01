@@ -13,7 +13,7 @@ export const searchMarkup = `
 </form>
 
 <!-------------------- result ----------------------->
-<div class="inputGroup">
+<div class="input-group">
     <div class="beforeResult">
         <img class="waiting" src="src/img/duck.gif" />
         <p class="findBefore">Find your's book.....💕</p>
@@ -23,7 +23,7 @@ export const searchMarkup = `
         <p class="moment">Please wait a moment🎶</p>
     </div>
     <ul class="booksList"></ul>
-    <p class = "noResult"></p>
+    <p class = "no_result"></p>
 </div>
 
 <!------------------------- page ------------------------->

@@ -1,11 +1,11 @@
 import * as searchFunction from "./searchFunction.js";
 
 const uiBase = (msg, currentPage, rowsPerPage) => {
-  const inputGroup = document.querySelector(".inputGroup");
+  const inputGroup = document.querySelector(".input-group");
   const loadingScreen = document.querySelector(".onStandby");
   const pageButton = document.querySelector(".pagingBlock");
   const numbers = document.querySelector("#numbers");
-  const noResult = document.querySelector(".noResult");
+  const noResults = document.querySelector(".no_result");
   const booksEl = inputGroup.querySelector(".booksList");
   const rowsCount = msg.meta.total_count; // 총 검색 결과 수 (항목의 총 개수)
   const pageCount = Math.ceil(rowsCount / rowsPerPage); // 총 페이지 개수
@@ -14,13 +14,12 @@ const uiBase = (msg, currentPage, rowsPerPage) => {
   const last = searchFunction.lastPageButton(currentPage, pageCount);
 
   loadingScreen.style.display = "none";
-  
+  pageButton.style.display = "block";
+
   if (msg.documents.length !== 0) {
     msg.documents.forEach((element) => {
-      pageButton.style.display = "block";
-
       const booksLiEl = document.createElement("li");
-      booksLiEl.className = "book"; // booksLiEl -> bookLiEl
+      booksLiEl.className = "books";
 
       // 책 제목
       let bookTitleEl = "";
@@ -52,10 +51,12 @@ const uiBase = (msg, currentPage, rowsPerPage) => {
       };
     });
   } else {
-    noResult.style.display = "block";
+    noResults.innerHTML = "";
+    noResults.style.display = "block";
 
-    noResult.innerText =
+    noResults.innerText =
       "The book could not be found T.T \n\n Try searching another keyword.";
+    inputGroup.append(noResults);
     pageButton.style.display = "none";
   }
 

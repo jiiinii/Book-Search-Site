@@ -8,13 +8,12 @@ const searchFormEl = document.querySelector("form");
 
 const handleSubmit = (e) => {
   e.preventDefault();
-  searchPost();
+  searchPost(1);
 };
 
 searchFormEl.addEventListener("submit", handleSubmit);
 
-const searchPost = (currentPage = 1) => {
-  console.log("currentPage >>> " + currentPage);
+const searchPost = (currentPage) => {
   let searchQuery = $(".search-entry").val();
 
   if (searchQuery == "") {
@@ -22,18 +21,19 @@ const searchPost = (currentPage = 1) => {
     return;
   }
 
-  const inputGroup = document.querySelector(".inputGroup");
+  const inputGroup = document.querySelector(".input-group");
   const beforeResult = document.querySelector(".beforeResult");
   const loadingScreen = document.querySelector(".onStandby");
   const numbers = document.querySelector("#numbers");
-  const noResult = document.querySelector(".noResult");
+  const noResults = document.querySelector(".no_result");
   const booksEl = inputGroup.querySelector(".booksList");
   const rowsPerPage = 40; // 한 페이지당 n개씩 보여줄 것.
-  let pageNum;
+  let pageNum = 1;
 
-  numbers.innerHTML = ""; //?? 위치바꿔
+  numbers.innerHTML = "";
+  noResults.innerHTML = "";
   booksEl.innerHTML = "";
-  noResult.style.display = "none"; //같음
+  noResults.style.display = "none";
   beforeResult.style.display = "none"; // 검색 실행 시 첫 화면 사라짐
   loadingScreen.style.display = "block";
 
@@ -53,28 +53,17 @@ const searchPost = (currentPage = 1) => {
       // 쿼리 파라미터 갯수 요청하기
     }).done((msg) => {
       console.log(msg);
-      /**
-       * uiBase : 위의 책 정보가 담긴 데이터를 불러오기 위한 매개체와
-       * 
-       * 위의 데이터 안에 있는 페이지와 사이즈를 언급하는 매개변수들을
-       * 화면상으로 보여주게끔 
-       * 꾸며주거나 계산되는 것들을 한번에 담아줌
-       */
       uiBase(msg, currentPage, rowsPerPage);
 
       const numbersBtn = numbers.querySelectorAll("li"); // 페이지네이션 클릭
-      pageNum = searchFunction.movePageBtn(currentPage - 1); // idx >= 10 일 때 페이지 버튼이 옮겨지도록 작동
+      pageNum = searchFunction.pageButtonClick(currentPage - 1);
 
       if (numbersBtn.length > 0) {
         numbersBtn[searchFunction.clickedNumBtn(currentPage - 1)].classList.add("clicked");
       }
 
-      /**
-       * item : li 태그 요소를 다룸
-       */
       numbersBtn.forEach((item, idx) => {
         item.addEventListener("click", (e) => {
-          console.log("item >>> " + item);
           e.preventDefault();
 
           //book list update
