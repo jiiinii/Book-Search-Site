@@ -1,4 +1,6 @@
 import * as searchFunction from "./searchFunction.js";
+// import * as detailInformation from "../Detail/detailInformation.js"
+import * as detailDocument from "../Detail/detailDocument.js"
 
 const uiBase = (msg, currentPage, rowsPerPage) => {
   const inputGroup = document.querySelector(".inputGroup");
@@ -20,7 +22,7 @@ const uiBase = (msg, currentPage, rowsPerPage) => {
       pageButton.style.display = "block";
 
       const booksLiEl = document.createElement("li");
-      booksLiEl.className = "book"; // booksLiEl -> bookLiEl
+      booksLiEl.className = "book";
 
       // 책 제목
       let bookTitleEl = "";
@@ -48,14 +50,39 @@ const uiBase = (msg, currentPage, rowsPerPage) => {
       inputGroup.append(booksEl);
 
       booksLiEl.onclick = function () {
-        console.log("aaa");
+        const bookData = element;
+        console.log(bookData);
+        console.log("<----------------------------------------------------------->");
+        const detailThumnail = bookData.thumbnail;
+        const detailTitle = bookData.title;
+        console.log("title >> " + detailTitle);
+        console.log("<----------------------------------------------------------->");
+        const detailAuthors = bookData.authors;
+        const detailTransLators = bookData.translators ? bookData.translators : '';
+        const detailYear = bookData.datetime;
+        const detailPrice = bookData.price;
+        const detailPublisher = bookData.publisher;
+        const detailSalePrice = bookData.sale_price;
+        const detailContents = bookData.contents ? bookData.contents : '정보 없음';
+        console.log("plot of a book >>> " + detailContents);
+        document.getElementById("library").innerHTML = detailDocument.detailDocument({
+          detailThumnail,
+          detailTitle,
+          detailAuthors,
+          detailTransLators,
+          detailYear,
+          detailPrice,
+          detailPublisher,
+          detailSalePrice,
+          detailContents,
+        });
+        // let renderDetail;
+        // renderDetail = detailInformation.bookInformation(element);
+        // console.log(renderDetail);
       };
     });
   } else {
     noResult.style.display = "block";
-
-    noResult.innerText =
-      "The book could not be found T.T \n\n Try searching another keyword.";
     pageButton.style.display = "none";
   }
 

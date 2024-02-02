@@ -8,19 +8,13 @@ const searchFormEl = document.querySelector("form");
 
 const handleSubmit = (e) => {
   e.preventDefault();
-  searchPost();
+  searchPost(1);
 };
 
 searchFormEl.addEventListener("submit", handleSubmit);
 
-const searchPost = (currentPage = 1) => {
+const searchPost = (currentPage) => {
   let searchQuery = $(".search-entry").val();
-
-  if (searchQuery == "") {
-    $(".beforeResult").focus();
-    return;
-  }
-
   const inputGroup = document.querySelector(".inputGroup");
   const beforeResult = document.querySelector(".beforeResult");
   const loadingScreen = document.querySelector(".onStandby");
@@ -32,7 +26,7 @@ const searchPost = (currentPage = 1) => {
 
   numbers.innerHTML = ""; //?? 위치바꿔
   booksEl.innerHTML = "";
-  noResult.style.display = "none"; //같음
+  noResult.style.display = "none";
   beforeResult.style.display = "none"; // 검색 실행 시 첫 화면 사라짐
   loadingScreen.style.display = "block";
 
