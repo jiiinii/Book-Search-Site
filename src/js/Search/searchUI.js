@@ -39,10 +39,11 @@ const uiBase = (msg, currentPage, rowsPerPage) => {
         bookPriceEl = element.price;
       }
 
+      // 책 표지
       booksLiEl.innerHTML = `${
         element.thumbnail === ""
-          ? `<img class = "book-poster-none">`
-          : `<img class = "book_poster" src="${element.thumbnail}" alt="${element.title}의 책 표지"/>`
+          ? `<img class = "bookPosterNone">`
+          : `<img class = "bookPoster" src="${element.thumbnail}" alt="${element.title}의 책 표지"/>`
       }
       <a class = 'info' bookId = "${element.isbn}"></a>`;
 
@@ -55,16 +56,13 @@ const uiBase = (msg, currentPage, rowsPerPage) => {
         console.log("<----------------------------------------------------------->");
         const detailThumnail = bookData.thumbnail;
         const detailTitle = bookData.title;
-        console.log("title >> " + detailTitle);
-        console.log("<----------------------------------------------------------->");
         const detailAuthors = bookData.authors;
         const detailTransLators = bookData.translators ? bookData.translators : '';
-        const detailYear = bookData.datetime;
+        const detailYear = bookData.datetime.slice(0, 4);
         const detailPrice = bookData.price;
         const detailPublisher = bookData.publisher;
         const detailSalePrice = bookData.sale_price;
-        const detailContents = bookData.contents ? bookData.contents : '정보 없음';
-        console.log("plot of a book >>> " + detailContents);
+        const detailContents = bookData.contents ? bookData.contents : 'No information';
         document.getElementById("library").innerHTML = detailDocument.detailDocument({
           detailThumnail,
           detailTitle,

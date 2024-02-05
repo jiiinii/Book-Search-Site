@@ -18,13 +18,11 @@ const searchPost = (currentPage) => {
   const inputGroup = document.querySelector(".inputGroup");
   const beforeResult = document.querySelector(".beforeResult");
   const loadingScreen = document.querySelector(".onStandby");
-  const numbers = document.querySelector("#numbers");
   const noResult = document.querySelector(".noResult");
   const booksEl = inputGroup.querySelector(".booksList");
   const rowsPerPage = 40; // 한 페이지당 n개씩 보여줄 것.
   let pageNum;
 
-  numbers.innerHTML = ""; //?? 위치바꿔
   booksEl.innerHTML = "";
   noResult.style.display = "none";
   beforeResult.style.display = "none"; // 검색 실행 시 첫 화면 사라짐
@@ -46,6 +44,9 @@ const searchPost = (currentPage) => {
       // 쿼리 파라미터 갯수 요청하기
     }).done((msg) => {
       console.log(msg);
+      const numbers = document.querySelector("#numbers");
+      numbers.innerHTML = "";
+      
       /**
        * uiBase : 위의 책 정보가 담긴 데이터를 불러오기 위한 매개체와
        * 
