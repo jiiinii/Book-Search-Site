@@ -23,7 +23,12 @@ export const searchMarkup = `
         <p class="moment">Please wait a moment🎶</p>
     </div>
     <ul class="booksList"></ul>
-    <p class = "noResult">The book could not be found T.T<br /><br />Try searching another keyword.</p>
+    <div class = "noResult">
+        <p class = "noResultNotification">
+        The book could not be found T.T<br /><br />
+        Try searching another keyword.
+        </p>
+    </div>
 </div>
 
 <!------------------------- page ------------------------->

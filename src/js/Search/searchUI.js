@@ -53,16 +53,15 @@ const uiBase = (msg, currentPage, rowsPerPage) => {
       booksLiEl.onclick = function () {
         const bookData = element;
         console.log(bookData);
-        console.log("<----------------------------------------------------------->");
         const detailThumnail = bookData.thumbnail;
         const detailTitle = bookData.title;
         const detailAuthors = bookData.authors;
-        const detailTransLators = bookData.translators ? bookData.translators : '';
+        const detailTransLators = bookData.translators;
         const detailYear = bookData.datetime.slice(0, 4);
         const detailPrice = bookData.price;
         const detailPublisher = bookData.publisher;
         const detailSalePrice = bookData.sale_price;
-        const detailContents = bookData.contents ? bookData.contents : 'No information';
+        const detailContents = bookData.contents;
         document.getElementById("library").innerHTML = detailDocument.detailDocument({
           detailThumnail,
           detailTitle,
@@ -74,9 +73,6 @@ const uiBase = (msg, currentPage, rowsPerPage) => {
           detailSalePrice,
           detailContents,
         });
-        // let renderDetail;
-        // renderDetail = detailInformation.bookInformation(element);
-        // console.log(renderDetail);
       };
     });
   } else {
