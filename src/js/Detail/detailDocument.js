@@ -11,15 +11,15 @@ export const detailDocument = ({
 }) => {
   return `
   <form action="" method="post">
-    <input class="search-entry" 
+    <input class = "search-entry" 
     type="text" 
     placeholder="Search for book titles & authors"
     minlength="3" 
     maxlength="250" 
     required 
     />
-    <div class="filterFuction">
-        <button type="submit" class="btn">Search</button>
+    <div class = "filterFuction">
+        <button type="submit" class = "btn">Search</button>
     </div>
   </form>
   <div class = "detailContentContainer">
@@ -64,8 +64,8 @@ export const detailDocument = ({
           }
           ${
             detailSalePrice == -1 || detailSalePrice == 0
-              ? `<li class = "detailSalePrice">할인가 : - 원</li>`
-              : `<li class = "detailSalePrice">할인가 : ${detailSalePrice}원</li>`
+              ? `<li class = "detailSalePrice">판매가 : - 원</li>`
+              : `<li class = "detailSalePrice">판매가 : ${detailSalePrice}원</li>`
           }
         </ul>
         <ul class = "detailInfo">

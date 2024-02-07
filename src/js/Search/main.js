@@ -46,12 +46,12 @@ const searchPost = (currentPage) => {
       console.log(msg);
       const numbers = document.querySelector("#numbers");
       numbers.innerHTML = "";
-      
+
       /**
        * uiBase : 위의 책 정보가 담긴 데이터를 불러오기 위한 매개체와
-       * 
+       *
        * 위의 데이터 안에 있는 페이지와 사이즈를 언급하는 매개변수들을
-       * 화면상으로 보여주게끔 
+       * 화면상으로 보여주게끔
        * 꾸며주거나 계산되는 것들을 한번에 담아줌
        */
       uiBase(msg, currentPage, rowsPerPage);
@@ -60,12 +60,11 @@ const searchPost = (currentPage) => {
       pageNum = searchFunction.movePageBtn(currentPage - 1); // idx >= 10 일 때 페이지 버튼이 옮겨지도록 작동
 
       if (numbersBtn.length > 0) {
-        numbersBtn[searchFunction.clickedNumBtn(currentPage - 1)].classList.add("clicked");
+        numbersBtn[searchFunction.clickedNumBtn(currentPage - 1)].classList.add(
+          "clicked"
+        );
       }
 
-      /**
-       * item : li 태그 요소를 다룸
-       */
       numbersBtn.forEach((item, idx) => {
         item.addEventListener("click", (e) => {
           e.preventDefault();

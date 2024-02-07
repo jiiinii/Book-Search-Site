@@ -91,6 +91,18 @@ const uiBase = (msg, currentPage, rowsPerPage) => {
   if (last - first == 10 && last - 1 != pageCount) {
     numbers.innerHTML += `<li class = "page_box"><a>></a></li>`;
   }
+
+  ////(1)
+  // var pageBack = document.referrer;
+
+  // // 이전에 방문한 url이 찍힘.
+  // console.log("referrer >>> " + pageBack);
+
+
+  ////(2)
+  // window.addEventListener('urlchange', function(event){
+  //   console.log('ddd >>> ' + event);
+  // });
 };
 
 export default uiBase;
