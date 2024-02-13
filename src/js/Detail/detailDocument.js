@@ -1,14 +1,4 @@
-export const detailDocument = ({
-  detailThumnail,
-  detailTitle,
-  detailAuthors,
-  detailTransLators,
-  detailYear,
-  detailPrice,
-  detailPublisher,
-  detailSalePrice,
-  detailContents,
-}) => {
+export const detailDocument = (bookData) => {
   return `
   <form action="" method="post">
     <input class = "search-entry" 
@@ -25,56 +15,56 @@ export const detailDocument = ({
   <div class = "detailContentContainer">
     <div class = "detailPoster">
     ${
-      detailThumnail === ""
+      bookData.thumbnail === ""
         ? `<img class = "bookPosterNone">`
-        : `<img class = "bookPoster" src="${detailThumnail}" 
-        alt="${detailTitle}의 책 표지"/>`
+        : `<img class = "bookPoster" src="${bookData.thumbnail}" 
+        alt="${bookData.thumbnail}의 책 표지"/>`
     }
     </div>
     <div class = "detailContentDesc">
-      <h3 class = "detailTitle">${detailTitle}</h3>
+      <h3 class = "detailTitle">${bookData.title}</h3>
         <ul class = "detailInfo">
           ${
-            detailAuthors.length == '0'
+            bookData.authors.length == '0'
               ? `<li class = "detailAuthor">지은이 : 정보없음</li>`
-              : `<li class = "detailAuthor">지은이 : ${detailAuthors}</li>`
+              : `<li class = "detailAuthor">지은이 : ${bookData.authors}</li>`
           }
           ${
-            detailTransLators.length == '0'
+            bookData.translators.length == '0'
               ? `<li class = "detailTransLators">옮긴이 : 정보없음</li>`
-              : `<li class = "detailTransLators">옮긴이 : ${detailTransLators}</li>`
+              : `<li class = "detailTransLators">옮긴이 : ${bookData.translators}</li>`
           }
           ${
-            detailPublisher == ""
+            bookData.publisher == ""
               ? `<li class = "detailPublisher">출판사 : 정보없음</li>`
-              : `<li class = "detailPublisher">출판사 : ${detailPublisher}</li>`
+              : `<li class = "detailPublisher">출판사 : ${bookData.publisher}</li>`
           }
         </ul>
         <h5></h5>
         <ul class = "detailInfo">
           ${
-            detailYear == ""
+            bookData.datetime.slice(0, 4) == ""
               ? `<li class = "detailYear">출간년도 : 정보없음</li>`
-              : `<li class = "detailYear">출간년도 : ${detailYear} 년</li>`
+              : `<li class = "detailYear">출간년도 : ${bookData.datetime.slice(0, 4)} 년</li>`
           }
           ${
-            detailPrice == 0
+            bookData.price == 0
               ? `<li class = "detailPrice">정가 : - 원</li>`
-              : `<li class = "detailPrice">정가 : ${detailPrice}원</li>`
+              : `<li class = "detailPrice">정가 : ${bookData.price}원</li>`
           }
           ${
-            detailSalePrice == -1 || detailSalePrice == 0
+            bookData.sale_price == -1 || bookData.sale_price == 0
               ? `<li class = "detailSalePrice">판매가 : - 원</li>`
-              : `<li class = "detailSalePrice">판매가 : ${detailSalePrice}원</li>`
+              : `<li class = "detailSalePrice">판매가 : ${bookData.sale_price}원</li>`
           }
         </ul>
         <ul class = "detailInfo">
         ${
-          detailContents
-            ? `<li class = "detailContents">'${detailTitle}' 의 정보 :<br /><br /> 
-            <p class = "contentInfo">${detailContents}...</p>
+          bookData.contents
+            ? `<li class = "detailContents">'${bookData.title}' 의 정보 :<br /><br /> 
+            <p class = "contentInfo">${bookData.contents}...</p>
             </li>`
-            : `<li class = "detailContents">'${detailTitle}' 의 정보 :<br /><br /> 
+            : `<li class = "detailContents">'${bookData.title}' 의 정보 :<br /><br /> 
             <p class = "contentInfo">정보 없음</p>
             </li>`
         }

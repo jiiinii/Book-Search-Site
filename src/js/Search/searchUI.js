@@ -1,6 +1,6 @@
 import * as searchFunction from "./searchFunction.js";
-// import * as detailInformation from "../Detail/detailInformation.js"
-import * as detailDocument from "../Detail/detailDocument.js"
+import detailInformation from "../Detail/detailInformation.js"
+// import * as handlePushstate from '../Page/handlePushState.js';
 
 const uiBase = (msg, currentPage, rowsPerPage) => {
   const inputGroup = document.querySelector(".inputGroup");
@@ -49,31 +49,13 @@ const uiBase = (msg, currentPage, rowsPerPage) => {
 
       booksEl.append(booksLiEl);
       inputGroup.append(booksEl);
-
+      
       booksLiEl.onclick = function () {
-        const bookData = element;
-        console.log(bookData);
-        const detailThumnail = bookData.thumbnail;
-        const detailTitle = bookData.title;
-        const detailAuthors = bookData.authors;
-        const detailTransLators = bookData.translators;
-        const detailYear = bookData.datetime.slice(0, 4);
-        const detailPrice = bookData.price;
-        const detailPublisher = bookData.publisher;
-        const detailSalePrice = bookData.sale_price;
-        const detailContents = bookData.contents;
-        document.getElementById("library").innerHTML = detailDocument.detailDocument({
-          detailThumnail,
-          detailTitle,
-          detailAuthors,
-          detailTransLators,
-          detailYear,
-          detailPrice,
-          detailPublisher,
-          detailSalePrice,
-          detailContents,
-        });
+        detailInformation(element);
       };
+
+      // const bookIdEl = document.querySelector(".info").getAttribute("bookId");
+      // handlePushstate(bookIdEl, `/detail/?id=${bookIdEl}`);
     });
   } else {
     noResult.style.display = "block";
@@ -91,18 +73,6 @@ const uiBase = (msg, currentPage, rowsPerPage) => {
   if (last - first == 10 && last - 1 != pageCount) {
     numbers.innerHTML += `<li class = "page_box"><a>></a></li>`;
   }
-
-  ////(1)
-  // var pageBack = document.referrer;
-
-  // // 이전에 방문한 url이 찍힘.
-  // console.log("referrer >>> " + pageBack);
-
-
-  ////(2)
-  // window.addEventListener('urlchange', function(event){
-  //   console.log('ddd >>> ' + event);
-  // });
 };
 
 export default uiBase;
