@@ -45,7 +45,10 @@ const uiBase = (msg, currentPage, rowsPerPage) => {
           ? `<img class = "bookPosterNone">`
           : `<img class = "bookPoster" src="${element.thumbnail}" alt="${element.title}의 책 표지"/>`
       }
-      <a class = 'info' bookId = "${element.isbn}"></a>`;
+      <a class = 'info' bookId = "${element.isbn}">
+        <p>${bookTitleEl}</p>
+        <p>${bookPriceEl} 원</p>
+      </a>`;
 
       booksEl.append(booksLiEl);
       inputGroup.append(booksEl);
