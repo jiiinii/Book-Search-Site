@@ -1,6 +1,7 @@
 import { searchMarkup } from "./searchMarkup.js";
 import uiBase from "./searchUI.js";
 import * as searchFunction from "./searchFunction.js";
+// import * as handlePushstate from '/src/js/handlePushstate';
 
 document.getElementById("library").innerHTML = searchMarkup;
 
