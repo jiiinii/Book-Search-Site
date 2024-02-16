@@ -1,6 +1,5 @@
 import * as searchFunction from "./searchFunction.js";
 import detailInformation from "../Detail/detailInformation.js"
-// import * as handlePushstate from '../Page/handlePushState.js';
 
 const uiBase = (msg, currentPage, rowsPerPage) => {
   const inputGroup = document.querySelector(".inputGroup");
@@ -53,26 +52,33 @@ const uiBase = (msg, currentPage, rowsPerPage) => {
       booksEl.append(booksLiEl);
       inputGroup.append(booksEl);
       
-      booksLiEl.onclick = function () {
+      booksLiEl.onclick = function (path) {
         detailInformation(element);
+
+        window.history.pushState('', '', path);
+        console.log("booksLiEl.path >>> " + path);
+
+        const urlChange = new CustomEvent('urlchange', {
+          detail: { href: path },
+        });
+        document.dispatchEvent(urlChange); // 핵심^^
+        console.log("urlChange >>> " + urlChange);
       };
 
-      // const bookIdEl = document.querySelector(".info").getAttribute("bookId");
-      // handlePushstate(bookIdEl, `/detail/?id=${bookIdEl}`);
     });
   } else {
     noResult.style.display = "block";
     pageButton.style.display = "none";
   }
-
+  
   if (first >= 11) {
     numbers.innerHTML += `<li class = "page_box"><a><</a></li>`;
   }
-
+  
   for (var i = first; i < last; i++) {
     numbers.innerHTML += `<li class = "page_box"><a id= ${i}> ${i} </a></li>`;
   }
-
+  
   if (last - first == 10 && last - 1 != pageCount) {
     numbers.innerHTML += `<li class = "page_box"><a>></a></li>`;
   }

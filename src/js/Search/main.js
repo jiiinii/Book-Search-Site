@@ -1,7 +1,7 @@
 import { searchMarkup } from "./searchMarkup.js";
 import uiBase from "./searchUI.js";
 import * as searchFunction from "./searchFunction.js";
-// import * as handlePushstate from '/src/js/handlePushstate';
+import detail from '../Detail/detailInformation.js';
 
 document.getElementById("library").innerHTML = searchMarkup;
 
@@ -18,6 +18,7 @@ const searchPost = (currentPage) => {
   let searchQuery = $(".search-entry").val();
   const inputGroup = document.querySelector(".inputGroup");
   const beforeResult = document.querySelector(".beforeResult");
+  const pageButton = document.querySelector(".pagingBlock");
   const loadingScreen = document.querySelector(".onStandby");
   const noResult = document.querySelector(".noResult");
   const booksEl = inputGroup.querySelector(".booksList");
@@ -25,6 +26,7 @@ const searchPost = (currentPage) => {
   let pageNum;
 
   booksEl.innerHTML = "";
+  pageButton.style.display = "none";
   noResult.style.display = "none";
   beforeResult.style.display = "none"; // 검색 실행 시 첫 화면 사라짐
   loadingScreen.style.display = "block";
@@ -74,6 +76,41 @@ const searchPost = (currentPage) => {
           booksEl.innerHTML = "";
           searchPost(idx + pageNum);
         });
+      });
+
+      const render = async () => {
+        let url = window.location.href;
+        console.log("url >>> " + url);
+
+        let path = new URL(url).pathname;
+        console.log("path : " + path);
+
+        const searchParams = new URL(url).searchParams;
+        console.log("searchParams >>> " + searchParams);
+
+        const queryString = searchParams.get("element");
+        console.log("queryString >>> " + queryString);
+
+        switch (
+          path // 대상 -> 위의 path
+        ) {
+          case "/": // if (path === '/')
+            break;
+          case "/element/": // if (path === '/detail/')
+            await detail(queryString);
+            break;
+        }
+      };
+      console.log("render >>> " + render);
+
+      document.addEventListener("urlchange", () => {
+        render();
+        console.log("ddd >>> " + render()); // 썸네일을 선택했을 때만
+      });
+
+      window.addEventListener("popstate", () => {
+        render();
+        console.log("back or front >>> ");
       });
     });
   };

@@ -1,6 +1,6 @@
 import * as detailDocument  from "./detailDocument.js";
 
-const bookInformation = (element) => {
+const bookInformation = async (element) => {
   const bookData = element;
         bookData.thumbnail;
         bookData.title;
