@@ -1,5 +1,5 @@
 import * as searchFunction from "./searchFunction.js";
-import detailInformation from "../Detail/detailInformation.js"
+import { handlePushState } from "../Page/handlePushState.js";
 
 const uiBase = (msg, currentPage, rowsPerPage) => {
   const inputGroup = document.querySelector(".inputGroup");
@@ -44,27 +44,16 @@ const uiBase = (msg, currentPage, rowsPerPage) => {
           ? `<img class = "bookPosterNone">`
           : `<img class = "bookPoster" src="${element.thumbnail}" alt="${element.title}의 책 표지"/>`
       }
-      <a class = 'info' bookId = "${element.isbn}">
+      <a class = 'info' id = "${element.isbn}">
         <p>${bookTitleEl}</p>
         <p>${bookPriceEl} 원</p>
       </a>`;
 
       booksEl.append(booksLiEl);
       inputGroup.append(booksEl);
-      
-      booksLiEl.onclick = function (path) {
-        detailInformation(element);
 
-        window.history.pushState('', '', path);
-        console.log("booksLiEl.path >>> " + path);
-
-        const urlChange = new CustomEvent('urlchange', {
-          detail: { href: path },
-        });
-        document.dispatchEvent(urlChange); // 핵심^^
-        console.log("urlChange >>> " + urlChange);
-      };
-
+      const bookIdLi = document.querySelector('.info').getAttribute('id');
+      handlePushState(booksLiEl, `/detail/?id=${bookIdLi}`, element); // handlePushState 함수로 url 변경
     });
   } else {
     noResult.style.display = "block";

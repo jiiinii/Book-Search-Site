@@ -1,17 +1,10 @@
 import * as detailDocument  from "./detailDocument.js";
 
-const bookInformation = async (element) => {
-  const bookData = element;
-        bookData.thumbnail;
-        bookData.title;
-        bookData.authors;
-        bookData.translators;
-        bookData.datetime.slice(0, 4);
-        bookData.price;
-        bookData.publisher;
-        bookData.sale_price;
-        bookData.contents;
-  document.getElementById("library").innerHTML = detailDocument.detailDocument(bookData);
+const bookInformation = async () => {
+  const book = window.localStorage.getItem("Book"); // string 형태임 -> 
+  const result = JSON.parse(book);
+  console.log("result >>> ", result);
+  document.getElementById("library").innerHTML = detailDocument.detailDocument(result);
 };
 
 export default bookInformation;
