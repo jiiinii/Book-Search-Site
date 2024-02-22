@@ -36,10 +36,4 @@ export const searchMarkup = `
     <div id = "numbers">
     </div>
 </div>
-
-<!------------------------- footer ------------------------->
-<footer>Made by. Jin Hui Park<br /><br />
-Github : <a
-    href="https://github.com/jiiinii/open_api">https://github.com/jiiinii/open_api</a><br /><br />
-e-mail : jiinii_wish@naver.com
-</footer>`;
+`;

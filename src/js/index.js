@@ -1,5 +1,6 @@
 import search from "./Search/main.js";
 import detail from "./Detail/detailInformation.js";
+import bookList from "./Search/searchUI.js";
 
 search();
 console.log("search() >>> " + search());
@@ -14,24 +15,28 @@ const render = async () => {
   const searchParams = new URL(url).searchParams;
   console.log("searchParams >>> " + searchParams);
 
-  const queryString = searchParams.get("id"); 
+  const queryString = searchParams; 
   console.log("queryString >>> " + queryString);
 
   switch (path) { // 위의 path로 대상잡음
     case "/": // if (path === '/')
       search();
-      break;
+      break;  
     case "/detail/": // if (path === '/detail/')
-      await detail(queryString);
+      detail(queryString);
+    case "url":
+      bookList(booksEl);
       break;
   }
 };
 console.log("render >>> " + render);
 
 document.addEventListener("urlchange", () => {
+  console.log("urlchange >>> ");
   render();
-});
+}); // url 엔터 쳤을땐 실행 안하는 부분
 
 window.addEventListener("popstate", () => {
+  console.log("popstate >>> ");
   render();
 });

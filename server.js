@@ -8,6 +8,10 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
+// app.get("/detail/", (req, res) => {
+//   res.sendFile(__dirname + "/index.html");
+// });
+
 app.listen(PORT, () => {
   console.log(`Server1 is running on >> http://localhost:${PORT}`);
 });

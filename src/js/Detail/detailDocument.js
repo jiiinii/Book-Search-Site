@@ -1,17 +1,5 @@
 export const detailDocument = (bookData) => {
   return `
-  <form action="" method="post">
-    <input class = "search-entry" 
-    type="text" 
-    placeholder="Search for book titles & authors"
-    minlength="3" 
-    maxlength="250" 
-    required 
-    />
-    <div class = "filterFuction">
-        <button type="submit" class = "btn">Search</button>
-    </div>
-  </form>
   <div class = "detailContentContainer">
     <div class = "detailPoster">
     ${

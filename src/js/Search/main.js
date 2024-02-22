@@ -67,9 +67,6 @@ const renderSearch = () => {
         numbersBtn.forEach((item, idx) => {
           item.addEventListener("click", (e) => {
             e.preventDefault();
-
-            //book list update
-            booksEl.innerHTML = "";
             searchPost(idx + pageNum);
           });
         });
