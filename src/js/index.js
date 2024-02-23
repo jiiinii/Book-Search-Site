@@ -1,6 +1,5 @@
 import search from "./Search/main.js";
 import detail from "./Detail/detailInformation.js";
-import bookList from "./Search/searchUI.js";
 
 search();
 console.log("search() >>> " + search());
@@ -12,20 +11,24 @@ const render = async () => {
   let path = new URL(url).pathname;
   console.log("path : " + path);
 
+  let urlSpace = new URL(url).pathname;
+  console.log("urlSpace >>> ", urlSpace);
+
   const searchParams = new URL(url).searchParams;
   console.log("searchParams >>> " + searchParams);
 
   const queryString = searchParams; 
   console.log("queryString >>> " + queryString);
 
-  switch (path) { // 위의 path로 대상잡음
+  switch (path, urlSpace) { // 위의 path로 대상잡음
     case "/": // if (path === '/')
       search();
       break;  
     case "/detail/": // if (path === '/detail/')
       detail(queryString);
-    case "url":
-      bookList(booksEl);
+      break;
+    case "/${searchQuery}/":
+      search(queryString);
       break;
   }
 };

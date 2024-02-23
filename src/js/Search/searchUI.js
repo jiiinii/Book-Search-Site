@@ -15,7 +15,7 @@ const uiBase = (msg, currentPage, rowsPerPage) => {
   const last = searchFunction.lastPageButton(currentPage, pageCount);
 
   loadingScreen.style.display = "none";
-  
+
   if (msg.documents.length !== 0) {
     msg.documents.forEach((element) => {
       pageButton.style.display = "block";
@@ -52,22 +52,22 @@ const uiBase = (msg, currentPage, rowsPerPage) => {
       booksEl.append(booksLiEl);
       inputGroup.append(booksEl);
 
-      const bookIdLi = document.querySelector('.info').getAttribute('id');
+      const bookIdLi = document.querySelector(".info").getAttribute("id");
       handlePushState(booksLiEl, `/detail/?id=${bookIdLi}`, element); // handlePushState 함수로 url 변경
     });
   } else {
     noResult.style.display = "block";
     pageButton.style.display = "none";
   }
-  
+
   if (first >= 11) {
     numbers.innerHTML += `<li class = "page_box"><a><</a></li>`;
   }
-  
+
   for (var i = first; i < last; i++) {
     numbers.innerHTML += `<li class = "page_box"><a id= ${i}> ${i} </a></li>`;
   }
-  
+
   if (last - first == 10 && last - 1 != pageCount) {
     numbers.innerHTML += `<li class = "page_box"><a>></a></li>`;
   }
