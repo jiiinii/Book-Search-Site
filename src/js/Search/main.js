@@ -1,10 +1,12 @@
 import { searchMarkup } from "./searchMarkup.js";
+console.log("searchMarkup");
 import uiBase from "./searchUI.js";
 import * as searchFunction from "./searchFunction.js";
 import { handlePushState } from "../Page/handlePushState.js";
 import { urlConnectPage } from "../Page/urlConnectPage.js";
 
 const renderSearch = () => {
+  console.log("renderSearch");
   document.getElementById("library").innerHTML = searchMarkup;
 
   const logoEl = document.querySelector(".logo");
@@ -51,28 +53,35 @@ const renderSearch = () => {
         // 쿼리 파라미터 갯수 요청하기
       }).done((msg) => {
         console.log(msg);
-        const numbers = document.querySelector("#numbers");
-        numbers.innerHTML = "";
+        // const numbers = document.querySelector("#numbers");
+        // numbers.innerHTML = "";
 
-        uiBase(msg, currentPage, rowsPerPage);
+        // uiBase(msg, currentPage, rowsPerPage);
 
-        const numbersBtn = numbers.querySelectorAll("li"); // 페이지네이션 클릭
-        pageNum = searchFunction.movePageBtn(currentPage - 1); // idx >= 10 일 때 페이지 버튼이 옮겨지도록 작동
+        // const numbersBtn = numbers.querySelectorAll("li"); // 페이지네이션 클릭
+        // pageNum = searchFunction.movePageBtn(currentPage - 1); // idx >= 10 일 때 페이지 버튼이 옮겨지도록 작동
 
-        if (numbersBtn.length > 0) {
-          numbersBtn[
-            searchFunction.clickedNumBtn(currentPage - 1)
-          ].classList.add("clicked");
-        }
+        // if (numbersBtn.length > 0) {
+        //   numbersBtn[
+        //     searchFunction.clickedNumBtn(currentPage - 1)
+        //   ].classList.add("clicked");
+        // }
 
-        numbersBtn.forEach((item, idx) => {
-          item.addEventListener("click", (e) => {
-            e.preventDefault();
-            searchPost(idx + pageNum);
-          });
-        });
-        urlConnectPage(booksEl, `/${searchQuery}/`, msg);
+        // numbersBtn.forEach((item, idx) => {
+        //   item.addEventListener("click", (e) => {
+        //     e.preventDefault();
+        //     searchPost(idx + pageNum);
+        //   });
+        // });
+
+        const bookCategory = window.localStorage.getItem("bookList");
+        console.log("urlConnectPage_bookData_get >>>", bookCategory);
+        const categoryResult = JSON.parse(bookCategory);
+        console.log("categoryResult >>>", categoryResult);
+
+        urlConnectPage(searchQuery, `/${searchQuery}/`);
         console.log("urlConnectPage ddd >>> ", urlConnectPage);
+        console.log("=============================================");
       });
     };
     setTimeout(greeting, 500);

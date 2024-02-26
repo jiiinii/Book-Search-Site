@@ -2,7 +2,7 @@ import search from "./Search/main.js";
 import detail from "./Detail/detailInformation.js";
 
 search();
-console.log("search() >>> " + search());
+console.log("search() >>> ");
 
 const render = async () => {
   let url = window.location.href;
@@ -22,17 +22,20 @@ const render = async () => {
 
   switch (path, urlSpace) { // 위의 path로 대상잡음
     case "/": // if (path === '/')
+      console.log("/");
       search();
       break;  
     case "/detail/": // if (path === '/detail/')
+      console.log("/detail/");
       detail(queryString);
       break;
     case "/${searchQuery}/":
+      console.log("/searchQuery/");
       search(queryString);
       break;
   }
 };
-console.log("render >>> " + render);
+console.log("render >>> ");
 
 document.addEventListener("urlchange", () => {
   console.log("urlchange >>> ");
