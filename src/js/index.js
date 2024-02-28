@@ -1,48 +1,34 @@
 import search from "./Search/main.js";
 import detail from "./Detail/detailInformation.js";
 
-search();
-console.log("search() >>> ");
+const getUrlParams = () => {
+  const url = new URL(window.location.href);
+  const path = url.pathname;
+  const keyword = url.searchParams.get("keyword");
+  const page = url.searchParams.get("page");
 
-const render = async () => {
-  let url = window.location.href;
-  console.log("url : " + url);
+  return { path, keyword, page };
+};
 
-  let path = new URL(url).pathname;
-  console.log("path : " + path);
+const renderUrl = async () => {
+  const { path, keyword, page } = getUrlParams();
 
-  let urlSpace = new URL(url).pathname;
-  console.log("urlSpace >>> ", urlSpace);
-
-  const searchParams = new URL(url).searchParams;
-  console.log("searchParams >>> " + searchParams);
-
-  const queryString = searchParams; 
-  console.log("queryString >>> " + queryString);
-
-  switch (path, urlSpace) { // 위의 path로 대상잡음
-    case "/": // if (path === '/')
-      console.log("/");
-      search();
-      break;  
-    case "/detail/": // if (path === '/detail/')
-      console.log("/detail/");
-      detail(queryString);
+  switch (path) {
+    case "/":
+    case "/search":
+      console.log("/search");
+      search(keyword, page);
       break;
-    case "/${searchQuery}/":
-      console.log("/searchQuery/");
-      search(queryString);
+    case "/detail/":
+      detail(keyword);
+      break;
+    default:
       break;
   }
 };
-console.log("render >>> ");
 
-document.addEventListener("urlchange", () => {
-  console.log("urlchange >>> ");
-  render();
-}); // url 엔터 쳤을땐 실행 안하는 부분
+document.addEventListener("urlchange", renderUrl);
+window.addEventListener("popstate", renderUrl);
 
-window.addEventListener("popstate", () => {
-  console.log("popstate >>> ");
-  render();
-});
+// 초기 렌더링
+renderUrl();

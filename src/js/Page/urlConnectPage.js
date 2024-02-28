@@ -1,10 +1,8 @@
-export const urlConnectPage = (urlSpace, msg) => {
-    window.localStorage.setItem('bookList', JSON.stringify(msg));
-    console.log("urlConnectPage_bookData_set >>> ", window.localStorage.setItem);
-    console.log(`urlSpace : ${urlSpace}`)
-    window.history.pushState('', '', urlSpace);
+export const urlConnectPage = (path, msg, currentPage) => {
+    window.localStorage.setItem('bookList', JSON.stringify(msg)); // 데이터 저장
+    window.history.pushState('', '', `search?keyword=${path}&page=${currentPage}`);
     const urlChange = new CustomEvent('urlchange', {
-        detail: { href: urlSpace },
+        detail: { href: path },
     });
     document.dispatchEvent(urlChange);
 }

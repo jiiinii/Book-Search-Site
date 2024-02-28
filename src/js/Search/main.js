@@ -1,12 +1,12 @@
 import { searchMarkup } from "./searchMarkup.js";
-console.log("searchMarkup");
 import uiBase from "./searchUI.js";
 import * as searchFunction from "./searchFunction.js";
 import { handlePushState } from "../Page/handlePushState.js";
 import { urlConnectPage } from "../Page/urlConnectPage.js";
 
-const renderSearch = () => {
-  console.log("renderSearch");
+const rowsPerPage = 40; // 한 페이지당 n개씩 보여줄 것.
+
+const render = (keyword, page) => {
   document.getElementById("library").innerHTML = searchMarkup;
 
   const logoEl = document.querySelector(".logo");
@@ -19,31 +19,38 @@ const renderSearch = () => {
 
   searchFormEl.addEventListener("submit", handleSubmit);
 
-  const searchPost = (currentPage) => {
-    let searchQuery = $(".search-entry").val(); // 검색어 출력
+  const firstToScreen = () => {
     const inputGroup = document.querySelector(".inputGroup");
     const beforeResult = document.querySelector(".beforeResult");
     const pageButton = document.querySelector(".pagingBlock");
     const loadingScreen = document.querySelector(".onStandby");
     const noResult = document.querySelector(".noResult");
     const booksEl = inputGroup.querySelector(".booksList");
-    const rowsPerPage = 40; // 한 페이지당 n개씩 보여줄 것.
-    let pageNum;
-    console.log("searchQuery ddd >>>", searchQuery);
 
     booksEl.innerHTML = "";
     pageButton.style.display = "none";
     noResult.style.display = "none";
     beforeResult.style.display = "none"; // 검색 실행 시 첫 화면 사라짐
     loadingScreen.style.display = "block";
+  };
 
-    const greeting = () => {
+  const searchPost = (currentPage) => {
+    let searchQuery = keyword ? keyword : $(".search-entry").val(); // 검색어 출력
+    console.log("searchQuery >>> ", searchQuery);
+    urlConnectPage(searchQuery, `/${searchQuery}/`, currentPage);
+  };
+
+  if (keyword) {
+    firstToScreen();
+    let pageNum;
+
+    const loading = () => {
       $.ajax({
         method: "GET",
         url: `https://dapi.kakao.com/v3/search/book`,
         data: {
-          query: searchQuery,
-          page: currentPage, // 결과 페이지 번호, 1~50 사이의 값, 기본 값 1
+          query: keyword,
+          page: page, // 결과 페이지 번호, 1~50 사이의 값, 기본 값 1
           size: rowsPerPage, // 한 페이지에 보여질 문서 수, 1~50 사이의 값, 기본 값 10
           target: "",
           status: "",
@@ -53,42 +60,31 @@ const renderSearch = () => {
         // 쿼리 파라미터 갯수 요청하기
       }).done((msg) => {
         console.log(msg);
-        // const numbers = document.querySelector("#numbers");
-        // numbers.innerHTML = "";
+        const numbers = document.querySelector("#numbers");
+        numbers.innerHTML = "";
 
-        // uiBase(msg, currentPage, rowsPerPage);
+        uiBase(msg, page, rowsPerPage);
 
-        // const numbersBtn = numbers.querySelectorAll("li"); // 페이지네이션 클릭
-        // pageNum = searchFunction.movePageBtn(currentPage - 1); // idx >= 10 일 때 페이지 버튼이 옮겨지도록 작동
+        const numbersBtn = numbers.querySelectorAll("li"); // 페이지네이션 클릭
+        pageNum = searchFunction.movePageBtn(page - 1); // idx >= 10 일 때 페이지 버튼이 옮겨지도록 작동
 
-        // if (numbersBtn.length > 0) {
-        //   numbersBtn[
-        //     searchFunction.clickedNumBtn(currentPage - 1)
-        //   ].classList.add("clicked");
-        // }
+        if (numbersBtn.length > 0) {
+          numbersBtn[searchFunction.clickedNumBtn(page - 1)].classList.add(
+            "clicked"
+          );
+        }
 
-        // numbersBtn.forEach((item, idx) => {
-        //   item.addEventListener("click", (e) => {
-        //     e.preventDefault();
-        //     searchPost(idx + pageNum);
-        //   });
-        // });
-
-        const bookCategory = window.localStorage.getItem("bookList");
-        console.log("urlConnectPage_bookData_get >>>", bookCategory);
-        const categoryResult = JSON.parse(bookCategory);
-        console.log("categoryResult >>>", categoryResult);
-
-        urlConnectPage(searchQuery, `/${searchQuery}/`);
-        console.log("urlConnectPage ddd >>> ", urlConnectPage);
-        console.log("=============================================");
+        numbersBtn.forEach((item, idx) => {
+          item.addEventListener("click", (e) => {
+            e.preventDefault();
+            searchPost(idx + pageNum);
+          });
+        });
       });
     };
-    setTimeout(greeting, 500);
-
-  };
+    setTimeout(loading, 500);
+  }
   handlePushState(logoEl, "/");
-  console.log("handlePushState_logo >>> ", handlePushState);
 };
 
-export default renderSearch;
+export default render;

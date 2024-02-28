@@ -15,11 +15,11 @@ export const searchMarkup = `
 <!-------------------- result ----------------------->
 <div class = "inputGroup">
     <div class = "beforeResult">
-        <img class = "waiting" src="src/img/duck.gif" />
+        <img class = "waiting" src="/src/img/duck.gif" />
         <p class = "findBefore">Find your's book.....💕</p>
     </div>
     <div class = "onStandby">
-        <img class = "loading" src="src/img/resultLoading.gif" />
+        <img class = "loading" src="/src/img/resultLoading.gif" />
         <p class = "moment">Please wait a moment🎶</p>
     </div>
     <ul class = "booksList"></ul>
