@@ -9,6 +9,7 @@ app.get(("/", "/search"), (req, res) => {
 });
 
 app.get("/detail/", (req, res) => {
+  console.log("/detail/");
   res.sendFile(__dirname + "/index.html");
 });
 

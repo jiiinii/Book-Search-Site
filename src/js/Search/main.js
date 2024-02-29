@@ -29,7 +29,7 @@ const render = (keyword, page) => {
   
   const searchPost = (currentPage, keyword) => {
     const searchQuery = keyword || $(".search-entry").val();
-    urlConnectPage(searchQuery, `/${searchQuery}/`, currentPage);
+    urlConnectPage(searchQuery, currentPage);
   };
 
   const clearSearchResults = () => {
