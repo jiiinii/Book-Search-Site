@@ -16,7 +16,6 @@ const renderUrl = async () => {
   switch (path) {
     case "/":
     case "/search":
-      console.log("/search");
       search(keyword, page);
       break;
     case "/detail/":
