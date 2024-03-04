@@ -1,7 +1,8 @@
 import * as searchFunction from "./searchFunction.js";
 import { handlePushState } from "../Page/handlePushState.js";
 
-const uiBase = (msg, currentPage, rowsPerPage) => {
+const uiBase = (msg, currentPage, rowsPerPage, keyword) => {
+  console.log("uiBase >>> ", uiBase);
   const inputGroup = document.querySelector(".inputGroup");
   const loadingScreen = document.querySelector(".onStandby");
   const pageButton = document.querySelector(".pagingBlock");
@@ -52,15 +53,14 @@ const uiBase = (msg, currentPage, rowsPerPage) => {
       booksEl.append(booksLiEl);
       inputGroup.append(booksEl);
 
-      const bookIdLi = document.querySelector(".info").getAttribute("id");
-      handlePushState(booksLiEl, `/detail/?id=${bookIdLi}`, element); // handlePushState 함수로 url 변경
+      handlePushState(booksLiEl, element.isbn , keyword);
     });
   } else {
     noResult.style.display = "block";
     pageButton.style.display = "none";
   }
 
-  if (first >= 11) {
+  if (first >= 11) { // page번호가 11 이상일 때
     numbers.innerHTML += `<li class = "page_box"><a><</a></li>`;
   }
 

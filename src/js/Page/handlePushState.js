@@ -1,10 +1,9 @@
-export const handlePushState = (obj, path, bookData) => {
+export const handlePushState = (obj, isbn, keyword) => {
     obj.addEventListener('click', () => {
-        window.localStorage.setItem('Book', JSON.stringify(bookData));
-        window.history.pushState('', '', path);
+        window.history.pushState('', '', `/detail/?keyword=${keyword}&isbn=${isbn}`);
         const urlChange = new CustomEvent('urlchange', {
-            detail: { href: path },
+            detail: { href: isbn },
         });
-        document.dispatchEvent(urlChange);
+        document.dispatchEvent(urlChange);                                                                     
     });
 };
