@@ -1,8 +1,7 @@
-import * as searchFunction from "./searchFunction.js";
 import { handlePushState } from "../Page/handlePushState.js";
+import * as searchFunction from "./searchFunction.js";
 
 const uiBase = (msg, currentPage, rowsPerPage, keyword) => {
-  console.log("uiBase >>> ", uiBase);
   const inputGroup = document.querySelector(".inputGroup");
   const loadingScreen = document.querySelector(".onStandby");
   const pageButton = document.querySelector(".pagingBlock");
@@ -53,14 +52,14 @@ const uiBase = (msg, currentPage, rowsPerPage, keyword) => {
       booksEl.append(booksLiEl);
       inputGroup.append(booksEl);
 
-      handlePushState(booksLiEl, element.isbn , keyword);
+      handlePushState(booksLiEl, element.isbn , keyword, currentPage);
     });
   } else {
     noResult.style.display = "block";
     pageButton.style.display = "none";
   }
 
-  if (first >= 11) { // page번호가 11 이상일 때
+  if (first >= 11) {
     numbers.innerHTML += `<li class = "page_box"><a><</a></li>`;
   }
 

@@ -1,16 +1,14 @@
 import { searchMarkup } from "./searchMarkup.js";
-import uiBase from "./searchUI.js";
-import * as searchFunction from "./searchFunction.js";
 import { handlePushState } from "../Page/handlePushState.js";
 import { urlConnectPage } from "../Page/urlConnectPage.js";
+import uiBase from "./searchUI.js";
+import * as searchFunction from "./searchFunction.js";
 
 const rowsPerPage = 40;
 
 const render = (keyword, page) => {
   document.getElementById("library").innerHTML = searchMarkup;
-  
   const handleSubmit = (e) => {
-    console.log("handleSubmit"); // 1
     e.preventDefault();
     searchPost(1);
   };
@@ -27,16 +25,13 @@ const render = (keyword, page) => {
   };
 
   elements.searchFormEl.addEventListener("submit", handleSubmit);
-  
+
   const searchPost = (currentPage, keyword) => {
-    console.log("searchPost >>> ", searchPost);
     const searchQuery = keyword || $(".search-entry").val();
-    console.log("searchQuery >>> ", searchQuery);
     urlConnectPage(searchQuery, currentPage);
   };
 
   const clearSearchResults = () => {
-    console.log("clearSearchResults >>> ", clearSearchResults);
     const { pageButton, noResult, beforeResult, loadingScreen, booksEl } = elements;
     booksEl.innerHTML = "";
     pageButton.style.display = "none";
@@ -68,14 +63,15 @@ const render = (keyword, page) => {
         uiBase(msg, page, rowsPerPage, keyword);
 
         const numbersBtn = numbers.querySelectorAll("li");
-        pageNum = searchFunction.movePageBtn(page - 1); // 0번대, 10,20,30,,,~
-        console.log("numbersBtn", numbersBtn);
+        pageNum = searchFunction.movePageBtn(page - 1);
 
         if (numbersBtn.length > 0) {
-          numbersBtn[searchFunction.clickedNumBtn(page - 1)].classList.add("clicked");
+          numbersBtn[searchFunction.clickedNumBtn(page - 1)].classList.add(
+            "clicked"
+          );
         }
 
-        numbersBtn.forEach((item, idx) => { // idx는 0부터 시작
+        numbersBtn.forEach((item, idx) => {
           item.addEventListener("click", (e) => {
             e.preventDefault();
             searchPost(idx + pageNum, keyword);
