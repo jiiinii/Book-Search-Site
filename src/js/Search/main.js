@@ -1,6 +1,7 @@
 import { searchMarkup } from "./searchMarkup.js";
 import { handlePushState } from "../Page/handlePushState.js";
 import { urlConnectPage } from "../Page/urlConnectPage.js";
+import { getBooks } from "../api.js";
 import uiBase from "./searchUI.js";
 import * as searchFunction from "./searchFunction.js";
 
@@ -45,19 +46,8 @@ const render = (keyword, page) => {
     let pageNum;
 
     const loading = () => {
-      $.ajax({
-        method: "GET",
-        url: `https://dapi.kakao.com/v3/search/book`,
-        data: {
-          query: keyword,
-          page: page,
-          size: rowsPerPage,
-          target: "",
-          status: "",
-        },
-        headers: { Authorization: "KakaoAK 0c604b6d9932c79e6b756db42c60334b" },
-      }).done((msg) => {
-        console.log("msg", msg);
+      const keywordResult = getBooks(keyword, page, rowsPerPage);
+      keywordResult.done((msg) => {
         const numbers = document.querySelector("#numbers");
 
         uiBase(msg, page, rowsPerPage, keyword);

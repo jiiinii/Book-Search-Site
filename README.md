@@ -1,29 +1,13 @@
-# README #
+# 📕Open API 사용으로 책 검색 사이트 만들기📕 #
 
 This README would normally document whatever steps are necessary to get your application up and running.
 
-### What is this repository for? ###
+## 🗓️개발 기간🗓️ ##
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* 2023년 10월 23일 ~ 24년 03월 06일
 
-### How do I get set up? ###
+## 🛠️기술 스택🛠️ ##
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+## Open API 참고 사이트 ##
 
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+## 화면 구성 ##
