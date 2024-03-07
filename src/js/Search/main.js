@@ -3,7 +3,7 @@ import { handlePushState } from "../Page/handlePushState.js";
 import { urlConnectPage } from "../Page/urlConnectPage.js";
 import { getBooks } from "../api.js";
 import uiBase from "./searchUI.js";
-import * as searchFunction from "./searchFunction.js";
+import * as mainEvent from "./mainEvent.js";
 
 const rowsPerPage = 40;
 
@@ -22,7 +22,7 @@ const render = (keyword, page) => {
     pageButton: document.querySelector(".pagingBlock"),
     loadingScreen: document.querySelector(".onStandby"),
     noResult: document.querySelector(".noResult"),
-    booksEl: document.querySelector(".inputGroup .booksList"),
+    booksEl: document.querySelector(".inputGroup .bookList"),
   };
 
   elements.searchFormEl.addEventListener("submit", handleSubmit);
@@ -53,10 +53,10 @@ const render = (keyword, page) => {
         uiBase(msg, page, rowsPerPage, keyword);
 
         const numbersBtn = numbers.querySelectorAll("li");
-        pageNum = searchFunction.movePageBtn(page - 1);
+        pageNum = mainEvent.movePageBtn(page - 1);
 
         if (numbersBtn.length > 0) {
-          numbersBtn[searchFunction.clickedNumBtn(page - 1)].classList.add(
+          numbersBtn[mainEvent.clickedNumBtn(page - 1)].classList.add(
             "clicked"
           );
         }

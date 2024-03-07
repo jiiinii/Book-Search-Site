@@ -1,5 +1,5 @@
 import { handlePushState } from "../Page/handlePushState.js";
-import * as searchFunction from "./searchFunction.js";
+import * as mainEvent from "./mainEvent.js";
 
 const uiBase = (msg, currentPage, rowsPerPage, keyword) => {
   const inputGroup = document.querySelector(".inputGroup");
@@ -7,12 +7,12 @@ const uiBase = (msg, currentPage, rowsPerPage, keyword) => {
   const pageButton = document.querySelector(".pagingBlock");
   const numbers = document.querySelector("#numbers");
   const noResult = document.querySelector(".noResult");
-  const booksEl = inputGroup.querySelector(".booksList");
+  const booksEl = inputGroup.querySelector(".bookList");
   const rowsCount = msg.meta.total_count; // 총 검색 결과 수 (항목의 총 개수)
   const pageCount = Math.ceil(rowsCount / rowsPerPage); // 총 페이지 개수
 
-  const first = searchFunction.firstPageButton(currentPage);
-  const last = searchFunction.lastPageButton(currentPage, pageCount);
+  const first = mainEvent.firstPageButton(currentPage);
+  const last = mainEvent.lastPageButton(currentPage, pageCount);
 
   loadingScreen.style.display = "none";
 

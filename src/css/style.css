@@ -136,7 +136,7 @@ img {
   display: grid;
 }
 
-.booksList {
+.bookList {
   display: grid;
   justify-content: center;
   grid-template-columns: 120px 120px 120px 120px;

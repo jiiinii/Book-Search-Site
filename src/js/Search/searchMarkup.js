@@ -22,7 +22,7 @@ export const searchMarkup = `
         <img class = "loading" src="/src/img/resultLoading.gif" />
         <p class = "moment">Please wait a moment🎶</p>
     </div>
-    <ul class = "booksList"></ul>
+    <ul class = "bookList"></ul>
     <div class = "noResult">
         <p class = "noResultNotification">
         The book could not be found T.T<br /><br />
