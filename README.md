@@ -19,4 +19,5 @@ This README would normally document whatever steps are necessary to get your app
 
 ## 화면 구성 ##
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/392ba56a-6d12-4f8a-97dc-539f8b2ef7ff" />
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/0c67d8cf-9c4e-4768-9238-a635aa59cd59" />
 
