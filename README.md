@@ -1,6 +1,6 @@
 # 📕Open API 사용으로 책 검색 사이트 만들기📕 #
 
-<a href="https://developers.kakao.com/">카카오 디벨로퍼스</a>
+<a href="https://developers.kakao.com/">카카오 디벨로퍼스</a>에서 open api 데이터를 사용하여 ajax 비동기 처리로 프로젝트를 제작하였습니다.<br/>
 
 ## 🗓️개발 기간🗓️ ##
 
