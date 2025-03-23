@@ -18,3 +18,6 @@ This README would normally document whatever steps are necessary to get your app
 ## Open API 참고 사이트 ##
 
 ## 화면 구성 ##
+<img width="1695" alt="image" src="https://github.com/user-attachments/assets/392ba56a-6d12-4f8a-97dc-539f8b2ef7ff" />
+![image](https://github.com/user-attachments/assets/4bf87965-8fc2-479e-a06c-96f183579fa9)
+
