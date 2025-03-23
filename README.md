@@ -19,5 +19,16 @@ This README would normally document whatever steps are necessary to get your app
 
 ## 화면 구성 ##
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/392ba56a-6d12-4f8a-97dc-539f8b2ef7ff" />
-<img width="500" alt="image" src="https://github.com/user-attachments/assets/0c67d8cf-9c4e-4768-9238-a635aa59cd59" />
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/0c67d8cf-9c4e-4768-9238-a635aa59cd59" /><br/>
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/de64ae8a-0714-4228-be3c-af36e253a0e8" />
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/91b43956-a004-4130-894a-c85529381fe3" /><br/>
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/f0d8ab46-2c7f-46ca-945a-222222c19646" />
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/d07683cc-217c-42ad-b84d-590c4ca0d7e5" /><br/>
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/99d325b3-14e9-4335-bb13-2fbe178663d6" />
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/95d4044f-de67-40d2-aa34-de83c71b1719" />
+
+
+
+
+
 
