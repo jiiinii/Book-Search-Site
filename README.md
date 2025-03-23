@@ -2,8 +2,11 @@
 
 <a href="https://developers.kakao.com/">카카오 디벨로퍼스</a>에서 open api 데이터를 사용하여 ajax 비동기 처리로 프로젝트를 제작하였습니다.<br/>
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/52089fa4-0d98-496f-86d2-5fde5ef212d8" /><br/>
-'카카오 디벨로퍼스 > 내 애플리케이션' 에서 키 발급을 위한 애플리케이션을 만든 후 
-
+'카카오 디벨로퍼스 > 내 애플리케이션' 에서 키 발급을 위한 애플리케이션을 만든 후 <br/>
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/60f354f8-77af-4b3a-b94f-f53f2f0a9eb2" /><br/>
+'애플리케이션 클릭 > 플랫폼 > Web 플랫폼' <br/>
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/cd62c307-f3b5-4408-849d-749edd1ca997" /><br/>
+localhost 주소 등록.
 
 ## 🗓️개발 기간🗓️ ##
 
