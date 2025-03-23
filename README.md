@@ -1,6 +1,9 @@
 # 📕Open API 사용으로 책 검색 사이트 만들기📕 #
 
 <a href="https://developers.kakao.com/">카카오 디벨로퍼스</a>에서 open api 데이터를 사용하여 ajax 비동기 처리로 프로젝트를 제작하였습니다.<br/>
+<img width="1697" alt="image" src="https://github.com/user-attachments/assets/52089fa4-0d98-496f-86d2-5fde5ef212d8" /><br/>
+'카카오 디벨로퍼스 > 내 애플리케이션' 에서 키 발급을 위한 애플리케이션을 만든 후 
+
 
 ## 🗓️개발 기간🗓️ ##
 
@@ -14,8 +17,6 @@
     <img src="https://img.shields.io/badge/trello-0052CC?style=flat-square&logo=trello&logoColor=white"/>
     <img src="https://img.shields.io/badge/sourcetree-0052CC?style=flat-square&logo=Sourcetree&logoColor=white"/>
 </div>
-
-## Open API 참고 사이트 ##
 
 ## 화면 구성 ##
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/392ba56a-6d12-4f8a-97dc-539f8b2ef7ff" />
