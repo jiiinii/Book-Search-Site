@@ -1,6 +1,6 @@
 # 📕Open API 사용으로 책 검색 사이트 만들기📕 #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+<a href="https://developers.kakao.com/">카카오 디벨로퍼스</a>
 
 ## 🗓️개발 기간🗓️ ##
 
