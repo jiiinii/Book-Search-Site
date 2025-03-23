@@ -4,7 +4,7 @@ This README would normally document whatever steps are necessary to get your app
 
 ## 🗓️개발 기간🗓️ ##
 
-* 2023년 10월 23일 ~ 24년 03월 06일
+* 2023년 10월 23일 ~ 상시 수정 중
 
 ## 🛠️기술 스택🛠️ ##
 
