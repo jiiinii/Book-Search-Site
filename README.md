@@ -36,6 +36,7 @@ localhost 주소 등록.<br/><br/>
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/de64ae8a-0714-4228-be3c-af36e253a0e8" /><br/>
 3) Loading 화면: 0.5초 setTimeout 기능 삽입<br/><br/>
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/91b43956-a004-4130-894a-c85529381fe3" /><br/>
+4) '수능특강'에 대한 검색 결과 및 도서 리스트 출력. 한 페이지에 40권씩 출력되도록 data내 size 설정.<br/><br/>    
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/f0d8ab46-2c7f-46ca-945a-222222c19646" /><br/>
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/d07683cc-217c-42ad-b84d-590c4ca0d7e5" /><br/>
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/99d325b3-14e9-4335-bb13-2fbe178663d6" /><br/>
