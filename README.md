@@ -27,7 +27,7 @@ localhost 주소 등록.<br/><br/>
 
 ## 화면 구성 ##
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/392ba56a-6d12-4f8a-97dc-539f8b2ef7ff" /><br/>
-이 사이트의 첫 메인화면. 밋밋하다고 생각 될 디자인에 오리 gif를 넣어, 보다 나은 생동감 있는 표현.
+이 사이트의 첫 메인화면. 밋밋하다고 생각 될 디자인에 오리 gif를 넣어,<br/> 보다 나은 생동감 있는 표현.
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/0c67d8cf-9c4e-4768-9238-a635aa59cd59" /><br/>
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/de64ae8a-0714-4228-be3c-af36e253a0e8" />
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/91b43956-a004-4130-894a-c85529381fe3" /><br/>
