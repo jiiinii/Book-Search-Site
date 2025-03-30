@@ -3,11 +3,11 @@
 <a href="https://developers.kakao.com/">카카오 디벨로퍼스</a>에서 open api 데이터를 사용하여 ajax 비동기 처리로 프로젝트를 제작하였습니다.<br/>
 이 웹사이트에서는 검색을 통하여 본인이 찾고자 하는 도서를 확인할 수 있으며, 알맞은 형태의 도서의 세부사항도 볼 수 있습니다.<br/><br/><br/>
 <div align="center">
-🔑 카카오 Open api 사용하기<br/>
+## 🔑 카카오 Open api 사용하기 ##<br/> 
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/52089fa4-0d98-496f-86d2-5fde5ef212d8" /><br/>
-'카카오 디벨로퍼스 > 내 애플리케이션' 에서 키 발급을 위한 애플리케이션을 만든 후 <br/>
+'카카오 디벨로퍼스 > 내 애플리케이션' 에서 키 발급을 위한 애플리케이션을 만든 후 <br/><br/>
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/60f354f8-77af-4b3a-b94f-f53f2f0a9eb2" /><br/>
-'애플리케이션 클릭 > 플랫폼 > Web 플랫폼' <br/>
+'애플리케이션 클릭 > 플랫폼 > Web 플랫폼' <br/><br/>
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/cd62c307-f3b5-4408-849d-749edd1ca997" /><br/>
 localhost 주소 등록.<br/><br/>
 </div>
