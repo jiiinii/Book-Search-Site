@@ -27,10 +27,11 @@ localhost 주소 등록.<br/><br/>
 
 ## 화면 구성 ##
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/392ba56a-6d12-4f8a-97dc-539f8b2ef7ff" /><br/>
-이 사이트의 첫 메인화면. 밋밋하다고 생각 될 디자인에 오리 gif를 넣어, 보다 나은 생동감 있는 표현.<br>
+1) 이 사이트의 첫 메인화면. 밋밋하다고 생각 될 디자인에 오리 gif를 넣어, 보다 나은 생동감 있는 표현.<br>
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/0c67d8cf-9c4e-4768-9238-a635aa59cd59" /><br/>
-input 태그를 활용한 검색어 구현. 3글자 이상 글자 입력하도록 되어있음(3글자 이하 입력시 검색 제한)<br/>
+2) input 태그를 활용한 검색어 구현. 3글자 이상 글자 입력하도록 되어있음(3글자 이하 입력시 검색 제한)<br/>
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/de64ae8a-0714-4228-be3c-af36e253a0e8" /><br/>
+3) Loading 화면: 0.5초 setTimeout 기능 삽입<br/>
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/91b43956-a004-4130-894a-c85529381fe3" /><br/>
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/f0d8ab46-2c7f-46ca-945a-222222c19646" /><br/>
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/d07683cc-217c-42ad-b84d-590c4ca0d7e5" /><br/>
