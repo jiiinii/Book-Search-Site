@@ -1,7 +1,8 @@
 # 📕Open API 사용으로 책 검색 사이트 만들기📕 #
 
 <a href="https://developers.kakao.com/">카카오 디벨로퍼스</a>에서 open api 데이터를 사용하여 ajax 비동기 처리로 프로젝트를 제작하였습니다.<br/>
-이 웹사이트에서는 검색을 통하여 본인이 찾고자 하는 도서를 확인할 수 있으며, 알맞은 형태의 도서의 세부사항도 볼 수 있습니다.<br/><br/>
+이 웹사이트에서는 검색을 통하여 본인이 찾고자 하는 도서를 확인할 수 있으며, 알맞은 형태의 도서의 세부사항도 볼 수 있습니다.<br/><br/><br/>
+- 카카오 Open api 사용하기
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/52089fa4-0d98-496f-86d2-5fde5ef212d8" /><br/>
 '카카오 디벨로퍼스 > 내 애플리케이션' 에서 키 발급을 위한 애플리케이션을 만든 후 <br/>
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/60f354f8-77af-4b3a-b94f-f53f2f0a9eb2" /><br/>
@@ -25,7 +26,7 @@ localhost 주소 등록.<br/><br/>
 </div>
 
 ## 화면 구성 ##
-<img width="500" alt="image" src="https://github.com/user-attachments/assets/392ba56a-6d12-4f8a-97dc-539f8b2ef7ff" />
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/392ba56a-6d12-4f8a-97dc-539f8b2ef7ff" /><br/>
 이 사이트의 첫 메인화면. 밋밋하다고 생각 될 디자인에 gif 이미지를 넣어, 보다 나은 생동감 있는 표현.
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/0c67d8cf-9c4e-4768-9238-a635aa59cd59" /><br/>
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/de64ae8a-0714-4228-be3c-af36e253a0e8" />
