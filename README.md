@@ -42,8 +42,10 @@ localhost 주소 등록.<br/><br/>
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/d07683cc-217c-42ad-b84d-590c4ca0d7e5" /><br/>
 6) 7페이지에 보여지는 '수능특강' 관련 도서들<br/><br/>
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/99d325b3-14e9-4335-bb13-2fbe178663d6" /><br/>
-7) 도서에 커서를 올릴 시, 도서명 & 도서 가격의 일부를 보임으로서, 세부정보를 확인할 수 있도록 효과를 더함.<br/><br/>
+7) 도서에 커서를 올릴 시, 도서명 & 도서 가격의 일부를 보임으로서, 세부정보를 확인할 수 있도록 효과를 더함.<br/>
+CSS로 효과를 구성했음.<br/><br/>
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/95d4044f-de67-40d2-aa34-de83c71b1719" /><br/>
+8) 찾고자했던 도서의 세부사항을 확인.책 제목, 지은이, 출간년도, 책의 정보, 책 가격 등등 세부사항 확인 가능
 </div>
 
 
