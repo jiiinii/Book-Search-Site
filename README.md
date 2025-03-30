@@ -38,8 +38,9 @@ localhost 주소 등록.<br/><br/>
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/91b43956-a004-4130-894a-c85529381fe3" /><br/>
 4) '수능특강'에 대한 검색 결과 및 도서 리스트 출력. 한 페이지에 40권씩 출력되도록 data내 size 설정.<br/><br/>    
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/f0d8ab46-2c7f-46ca-945a-222222c19646" /><br/>
-5) '수능특강'관련 도서가 검색된 갯수에 맞춰 한 페이지에 40권씩 보여지도록 페이지네이션 구현. 해당페이지 (1페이지)와 그렇지 않은 페이지 버튼을 색상으로 구별<br/><br/>
+5) '수능특강'관련 도서가 검색된 갯수에 맞춰 한 페이지에 40권씩 보여지도록 페이지네이션 구현.<br/> 해당페이지 (1페이지)와 그렇지 않은 페이지 버튼을 색상으로 구별<br/><br/>
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/d07683cc-217c-42ad-b84d-590c4ca0d7e5" /><br/>
+6) 7페이지에 보여지는 '수능특강' 관련 도서들<br/><br/>
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/99d325b3-14e9-4335-bb13-2fbe178663d6" /><br/>
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/95d4044f-de67-40d2-aa34-de83c71b1719" /><br/>
 </div>
