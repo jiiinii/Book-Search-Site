@@ -31,6 +31,24 @@ document.addEventListener("urlchange", () => {
 });
 window.addEventListener("popstate", () => {
   renderUrl();
+  if (location.pathname === "/") {
+    const elements = {
+      logoEl: document.querySelector(".logo"),
+      searchFormEl: document.querySelector("form"),
+      inputGroup: document.querySelector(".inputGroup"),
+      beforeResult: document.querySelector(".beforeResult"),
+      pageButton: document.querySelector(".pagingBlock"),
+      loadingScreen: document.querySelector(".onStandby"),
+      noResult: document.querySelector(".noResult"),
+      booksEl: document.querySelector(".bookList"),
+    };
+
+    elements.booksEl.style.display = "none";
+    elements.pageButton.style.display = "none";
+    elements.noResult.style.display = "none";
+    elements.loadingScreen.style.display = "none";
+    elements.beforeResult.style.display = "block";
+  }
 });
 
 // 초기 렌더링

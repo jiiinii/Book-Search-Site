@@ -15,11 +15,10 @@ const uiBase = (msg, currentPage, rowsPerPage, keyword) => {
   const last = mainEvent.lastPageButton(currentPage, pageCount);
 
   loadingScreen.style.display = "none";
+  pageButton.innerHTML = "";
 
   if (msg.documents.length !== 0) {
     msg.documents.forEach((element) => {
-      pageButton.style.display = "block";
-
       const booksLiEl = document.createElement("li");
       booksLiEl.className = "book";
 
@@ -48,11 +47,11 @@ const uiBase = (msg, currentPage, rowsPerPage, keyword) => {
         <p>${bookTitleEl}</p>
         <p>${bookPriceEl} 원</p>
       </a>`;
-
+      pageButton.style.display = "block";
       booksEl.append(booksLiEl);
       inputGroup.append(booksEl);
 
-      handlePushState(booksLiEl, element.isbn , keyword, currentPage);
+      handlePushState(booksLiEl, element.isbn, keyword, currentPage);
     });
   } else {
     noResult.style.display = "block";

@@ -22,7 +22,7 @@ const render = (keyword, page) => {
     pageButton: document.querySelector(".pagingBlock"),
     loadingScreen: document.querySelector(".onStandby"),
     noResult: document.querySelector(".noResult"),
-    booksEl: document.querySelector(".inputGroup .bookList"),
+    booksEl: document.querySelector(".bookList"),
   };
 
   elements.searchFormEl.addEventListener("submit", handleSubmit);
@@ -33,7 +33,8 @@ const render = (keyword, page) => {
   };
 
   const clearSearchResults = () => {
-    const { pageButton, noResult, beforeResult, loadingScreen, booksEl } = elements;
+    const { pageButton, noResult, beforeResult, loadingScreen, booksEl } =
+      elements;
     booksEl.innerHTML = "";
     pageButton.style.display = "none";
     noResult.style.display = "none";
